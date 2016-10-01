@@ -17,14 +17,29 @@ def getCourseInfo(soup):
 		courseHTML = "SEC_SHORT_TITLE_" + str(i)
 		professorHTML = "SEC_FACULTY_INFO_" + str(i)
 
-		course = soup.find(id=courseHTML).text
+		rawCourse = soup.find(id=courseHTML).text
+		courseID = ""
+		courseName = ""
 		professor = soup.find(id=professorHTML).text
 
-		print course
+		#get course ID from string
+		index = 0
+		starCounter = 0
+		while starCounter < 2:
+			if rawCourse[index] == "*":
+				starCounter += 1
+			else:
+				courseID += rawCourse[index]
+			index += 1
+
+		#get course name from string
+		courseName += " ".join(rawCourse.split()[2:len(rawCourse.split())])
+
+		print rawCourse
+		print courseID
+		print courseName
 		print professor
 
-	#TODO
-	#parse course and professor and add them to courseInfo dictionary
 
 if __name__ == "__main__":
 	getCourseInfo(soup1) #Summer 2016
