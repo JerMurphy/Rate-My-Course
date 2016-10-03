@@ -1,10 +1,10 @@
-DROP TABLE IF EXITST reviews
+DROP TABLE IF EXISTS reviews
 
 CREATE TABLE reviews (
-	rev_ID int NOT NULL AUTO_INCREMENT,
-	review varchar(500) NOT NULL,
-	rating float,
+	reviewID int NOT NULL AUTO_INCREMENT,
+	review varchar(500),
+	rating float NOT NULL,
 	courseID varchar(10) NOT NULL,
-	PRIMARY KEY (rev_ID),
+	PRIMARY KEY (reviewID),
 	FOREIGN KEY (courseID) REFERENCES courses(courseID)
 )
