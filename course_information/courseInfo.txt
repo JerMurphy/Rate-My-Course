@@ -1,554 +1,427 @@
-CS*1083*FRE1A (295870) Intro Comp Prog II (in Java)
 CS1083
 Intro Comp Prog II (in Java)
 E. El-Shanta
 
-CS*2043*FRE1A (295872) Software Engineering I
 CS2043
 Software Engineering I
 Natalie Webber
 
-CS*2253*FRE1A (295873) Machine Level Programming
 CS2253
 Machine Level Programming
 Aziz Fellah
 
-CS*2333*FRE1A (295874) Computab.& Formal Lang.
 CS2333
 Computab.& Formal Lang.
 Michael Fleming
 
-CS*3413*FRE1D (295876) Operating Systems I
 CS3413
 Operating Systems I
 Natalia Stakhanova
 
-CS*3853*FRE1D (295877) Comp Architecture & Organizat
 CS3853
 Comp Architecture & Organizat
 Alexis Morris
 
-CS*4983*FR01 (297764) Senior Technical Report
 CS4983
 Senior Technical Report
 Will Hyslop
 
-CS*4997*FR01 (295878) Honours Thesis
 CS4997
 Honours Thesis
 Will Hyslop
 
-CS*6905*FR01 (298606) Computer Vision
 CS6905
 Computer Vision
 R. Herpers
 
-CS*6905*FR02 (298607) Artificail Neural Networks
 CS6905
 Artificail Neural Networks
 Paul G. Ploeger
 
-CS*6995*FR01 (285589) Master's Project
 CS6995
 Master's Project
 Gerhard Dueck
 
-CS*6996*FR01 (295879) Master's Report
 CS6996
 Master's Report
 Patricia Evans
 
-CS*6997*FR01 (295880) Master's Thesis
 CS6997
 Master's Thesis
 Patricia Evans
 
-CS*6998*FR01 (295882) Phd Thesis
 CS6998
 Phd Thesis
 Patricia Evans
 
-CS*6999*FR01 (295884) Security Data Visual
 CS6999
 Security Data Visual
 Ali Ghorbani
 
-CS*6999*FR02 (293155) Arch. Big Data Sys.
 CS6999
 Arch. Big Data Sys.
 Suprio Ray
 
-CS*6999*FR03 (293154) Information Visualization
 CS6999
 Information Visualization
 Scott Bateman
 
-CS*6999*FR04 (298870) Garbage Collection
 CS6999
 Garbage Collection
 Kenneth Kent
 
-CS*COOP*FR01 (295885) Co-Op Work Term
-CSCOOP
-Co-Op Work Term
-To be Announced
-
-CS*PEP*FR01 (295886) Prof.Exper.Prog.
-CSPEP
-Prof.Exper.Prog.
-To be Announced
-
-INFO*1103*FRE1A (296042) Data & Information Management
 INFO1103
 Data & Information Management
 Taees Eimouri
 
-CS*1003*FR01A (293097) Prog & Problem Solving for Eng
 CS1003
 Prog & Problem Solving for Eng
 C. Paul Cook, Leah Bidlake
 
-CS*1003*FR02A (293098) Prog & Problem Solving for Eng
 CS1003
 Prog & Problem Solving for Eng
 C. Paul Cook, Leah Bidlake
 
-CS*1023*FR01A (294785) Data Structures & Algorithms
 CS1023
 Data Structures & Algorithms
 Huajie Zhang
 
-CS*1073*FR01A (293104) Intr Comp Prog I (in Java)
 CS1073
 Intr Comp Prog I (in Java)
 Natalie Webber
 
-CS*1073*FR02A (293105) Intr Comp Prog I (in Java)
 CS1073
 Intr Comp Prog I (in Java)
 Eric Aubanel
 
-CS*1073*FR03A (293106) Intr Comp Prog I (in Java)
 CS1073
 Intr Comp Prog I (in Java)
 Scott Bateman
 
-CS*1073*FR04A (293107) Intr Comp Prog I (in Java)
 CS1073
 Intr Comp Prog I (in Java)
 Natalie Webber
 
-CS*1083*FR01A (293112) Intro Comp Prog II (in Java)
 CS1083
 Intro Comp Prog II (in Java)
 Przemyslaw Pochec
 
-CS*1203*FR01A (293113) Overview of Computer Science
 CS1203
 Overview of Computer Science
 Wei Song
 
-CS*1203*FR02A (286591) Overview of Computer Science
 CS1203
 Overview of Computer Science
 Wei Song
 
-CS*1303*FR01A (293114) Discrete Structures
 CS1303
 Discrete Structures
 Michael Fleming
 
-CS*2043*FR01A (293116) Software Engineering I
 CS2043
 Software Engineering I
 Weichang Du
 
-CS*2043*FR02A (293117) Software Engineering I
 CS2043
 Software Engineering I
 Weichang Du
 
-CS*2253*FR01A (293119) Machine Level Programming
 CS2253
 Machine Level Programming
 Gerhard Dueck
 
-CS*2253*FR02A (293120) Machine Level Programming
 CS2253
 Machine Level Programming
 Gerhard Dueck
 
-CS*2383*FR01A (293121) Data Structures and Algorithms
 CS2383
 Data Structures and Algorithms
 R. Lu
 
-CS*2545*FR01A (296819) Data Sci for Big Data Analytic
 CS2545
 Data Sci for Big Data Analytic
 Suprio Ray
 
-CS*2999*FR01A (293123) Problem Solving for Programmer
 CS2999
 Problem Solving for Programmer
 Scott Bateman
 
-CS*3025*FR01A (297436) Human Computer Interaction
 CS3025
 Human Computer Interaction
 Scott Bateman
 
-CS*3113*FR01A (293125) Intro to Numerical Methods
 CS3113
 Intro to Numerical Methods
 K. Nasartschuk
 
-CS*3383*FR01A (293127) Algorithm Design & Analysis
 CS3383
 Algorithm Design & Analysis
 David Bremner
 
-CS*3413*FR01A (293129) Operating Systems I
 CS3413
 Operating Systems I
 Leah Bidlake
 
-CS*3873*FR01A (293132) Net-Centric Computing
 CS3873
 Net-Centric Computing
 Przemyslaw Pochec
 
-CS*3997*FR01A (293134) Professional Practice
 CS3997
 Professional Practice
 Andrew J. McAllister
 
-CS*4735*FR01A (293136) Computer Graphics
 CS4735
 Computer Graphics
 David Bremner
 
-CS*4745*FR01A (293137) Intro to Parallel Process
 CS4745
 Intro to Parallel Process
 Eric Aubanel
 
-CS*4935*FR01A (286618) Adv'd. Algorithmic Techniques
 CS4935
 Adv'd. Algorithmic Techniques
 Patricia Evans
 
-CS*4983*FR01A (294817) Senior Technical Report
 CS4983
 Senior Technical Report
 Przemyslaw Pochec
 
-CS*4997*FR01X (293140) Honours Thesis
 CS4997
 Honours Thesis
 Przemyslaw Pochec
 
-CS*4998*FR01A (293141) Open Source Project
 CS4998
 Open Source Project
 Przemyslaw Pochec
 
-CS*6003*FR01A (296868) Research Methods for CS
 CS6003
 Research Methods for CS
 Patricia Evans
 
-CS*6025*FR01A (293143) Parallel/Dist Proc I
 CS6025
 Parallel/Dist Proc I
 Eric Aubanel
 
-CS*6585*FR01A (265887) Database Foundations
 CS6585
 Database Foundations
 Suprio Ray
 
-CS*6735*FR01A (293144) Machine Learning & Data Mining
 CS6735
 Machine Learning & Data Mining
 Huajie Zhang
 
-CS*6895*FR01A (288295) Wireless Net & Mobile Communic
 CS6895
 Wireless Net & Mobile Communic
 Wei Song
 
-CS*6991*FR01A (286628) Algorithm Analysis
 CS6991
 Algorithm Analysis
 Patricia Evans
 
-CS*6996*FR01A (293149) Master's Report
 CS6996
 Master's Report
 Patricia Evans
 
-CS*6997*FR01A (293150) Master's Thesis
 CS6997
 Master's Thesis
 Patricia Evans
 
-CS*6998*FR01A (293152) Phd Thesis
 CS6998
 Phd Thesis
 Patricia Evans
 
-CS*COOP*FR01A (293158) Co-Op Work Term
-CSCOOP
-Co-Op Work Term
-To be Announced
-
-CS*PEP*FR01A (293159) Prof.Exper.Prog.
-CSPEP
-Prof.Exper.Prog.
-To be Announced
-
-INFO*1103*FR01A (293664) Data & Information Management
 INFO1103
 Data & Information Management
 Will Hyslop
 
-INFO*3103*FR01A (296800) Programming on the Web
 INFO3103
 Programming on the Web
 Rick Wightman
 
-INFO*3303*FR01A (293667) Enterprise Information System
 INFO3303
 Enterprise Information System
 Will Hyslop
 
-INFO*4900*FR01X (293668) Inform'n.System Design Project
 INFO4900
 Inform'n.System Design Project
 Will Hyslop
 
-CS*1003*FR01B (294782) Prog & Problem Solving for Eng
 CS1003
 Prog & Problem Solving for Eng
 Wei Song
 
-CS*1073*FR01B (294787) Intr Comp Prog I (in Java)
 CS1073
 Intr Comp Prog I (in Java)
 Natalie Webber
 
-CS*1083*FR01B (294789) Intro Comp Prog II (in Java)
 CS1083
 Intro Comp Prog II (in Java)
 Scott Bateman
 
-CS*1083*FR02B (294790) Intro Comp Prog II (in Java)
 CS1083
 Intro Comp Prog II (in Java)
 Leah Bidlake
 
-CS*1083*FR03B (294791) Intro Comp Prog II (in Java)
 CS1083
 Intro Comp Prog II (in Java)
 Eric Aubanel
 
-CS*1303*FR01B (294793) Discrete Structures
 CS1303
 Discrete Structures
 Huajie Zhang
 
-CS*1303*FR02B (288266) Discrete Structures
 CS1303
 Discrete Structures
 Huajie Zhang
 
-CS*2043*FR01B (297679) Software Engineering I
 CS2043
 Software Engineering I
 Natalie Webber
 
-CS*2053*FR01B (294794) Intro to Game Development
 CS2053
 Intro to Game Development
 Weichang Du
 
-CS*2063*FR01B (294795) Intro to Mobile Applic Develop
 CS2063
 Intro to Mobile Applic Develop
 Rick Wightman
 
-CS*2253*FR01B (297680) Machine Level Programming
 CS2253
 Machine Level Programming
 Przemyslaw Pochec
 
-CS*2263*FR01B (296818) Procedural Program Development
 CS2263
 Procedural Program Development
 Eric Aubanel
 
-CS*2333*FR01B (294797) Computab.& Formal Lang.
 CS2333
 Computab.& Formal Lang.
 Patricia Evans
 
-CS*2383*FR01B (294799) Data Structures and Algorithms
 CS2383
 Data Structures and Algorithms
 To be Announced
 
-CS*2999*FR01B (294801) Problem Solving for Programmer
 CS2999
 Problem Solving for Programmer
 To be Announced
 
-CS*3383*FR01B (294804) Algorithm Design & Analysis
 CS3383
 Algorithm Design & Analysis
 Huajie Zhang
 
-CS*3413*FR01B (296853) Operating Systems I
 CS3413
 Operating Systems I
 Leah Bidlake
 
-CS*3503*FR01B (294805) Syst. Anal., Design & Pro.Mgmt
 CS3503
 Syst. Anal., Design & Pro.Mgmt
 Andrew J. McAllister
 
-CS*3613*FR01B (294806) Programming Languages
 CS3613
 Programming Languages
 David Bremner
 
-CS*3703*FR01B (293131) Multimedia Design
 CS3703
 Multimedia Design
 Natalie Webber
 
-CS*3853*FR01B (294808) Comp Architecture & Organizat
 CS3853
 Comp Architecture & Organizat
 Gerhard Dueck
 
-CS*3873*FR01B (294809) Net-Centric Computing
 CS3873
 Net-Centric Computing
 Wei Song
 
-CS*4015*FR01B (294812) Software Arch.& Design Pattern
 CS4015
 Software Arch.& Design Pattern
 Weichang Du
 
-CS*4065*FR01B (296856) Interactive Human-Centered Sys
 CS4065
 Interactive Human-Centered Sys
 Scott Bateman
 
-CS*4545*FR01B (296862) Big Data Systems
 CS4545
 Big Data Systems
 Suprio Ray
 
-CS*4725*FR01B (294816) Intro Artificial Intell
 CS4725
 Intro Artificial Intell
 Michael Fleming
 
-CS*4983*FR01B (296864) Senior Technical Report
 CS4983
 Senior Technical Report
 Przemyslaw Pochec
 
-CS*4997*FR01Y (293140) Honours Thesis
 CS4997
 Honours Thesis
 Przemyslaw Pochec
 
-CS*5865*FR01B (293142) Advanced Data Comm & Ntwkg
 CS5865
 Advanced Data Comm & Ntwkg
 Przemyslaw Pochec
 
-CS*6065*FR01B (297463) Interactive Human-Centered Sys
 CS6065
 Interactive Human-Centered Sys
 Scott Bateman
 
-CS*6075*FR01B (294822) Software Architecture
 CS6075
 Software Architecture
 Weichang Du
 
-CS*6355*FR01B (294823) Cryptoanal & Data Base S
 CS6355
 Cryptoanal & Data Base S
 Rodney H. Cooper
 
-CS*6375*FR01B (294824) Linear Programming
 CS6375
 Linear Programming
 David Bremner
 
-CS*6545*FR01B (297464) Big Data Systems
 CS6545
 Big Data Systems
 Suprio Ray
 
-CS*6705*FR01B (294825) Fndns. of Artificial Intellig.
 CS6705
 Fndns. of Artificial Intellig.
 Michael Fleming
 
-CS*6905*FR01B (294826) Dynamic Memory Management
 CS6905
 Dynamic Memory Management
 Gerhard Dueck
 
-CS*6996*FR01B (296869) Master's Report
 CS6996
 Master's Report
 Patricia Evans
 
-CS*6997*FR01B (294829) Master's Thesis
 CS6997
 Master's Thesis
 Patricia Evans
 
-CS*6998*FR01B (294830) Phd Thesis
 CS6998
 Phd Thesis
 Patricia Evans
 
-INFO*1103*FR01B (295239) Data & Information Management
 INFO1103
 Data & Information Management
 Rick Wightman
 
-INFO*1103*FR02B (295240) Data & Information Management
 INFO1103
 Data & Information Management
 Leah Bidlake
 
-INFO*1103*FR03B (295241) Data & Information Management
 INFO1103
 Data & Information Management
 Rick Wightman
 
-INFO*2403*FR01B (293665) Information Security
 INFO2403
 Information Security
 Natalia Stakhanova
 
-INFO*3403*FR01B (295243) Info. System Administration
 INFO3403
 Info. System Administration
 Suprio Ray
 
-INFO*4900*FR01Y (293668) Inform'n.System Design Project
 INFO4900
 Inform'n.System Design Project
 Will Hyslop

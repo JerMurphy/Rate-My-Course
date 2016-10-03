@@ -35,10 +35,11 @@ def getCourseInfo(soup):
 		#get course name from string
 		courseName += " ".join(rawCourse.split()[2:len(rawCourse.split())])
 
-		print rawCourse
-		print courseID
-		print courseName
-		print professor
+		#ignore cscoop and cspep
+		if (courseID != "CSCOOP") and (courseID != "CSPEP"):
+			print courseID
+			print courseName
+			print professor
 
 
 if __name__ == "__main__":
