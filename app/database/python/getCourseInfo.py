@@ -20,7 +20,8 @@ def getCourseInfo(soup):
 		rawCourse = soup.find(id=courseHTML).text
 		courseID = ""
 		courseName = ""
-		professor = soup.find(id=professorHTML).text
+		#get professor text & get rid of new lines
+		professor = "".join( (soup.find(id=professorHTML).text).splitlines() )
 
 		#get course ID from string
 		index = 0
