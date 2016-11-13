@@ -1,0 +1,9 @@
+DELIMITER //
+DROP PROCEDURE IF EXISTS getAllCourses //
+
+CREATE PROCEDURE getAllCourses()
+BEGIN
+  SELECT * 
+    FROM courses;
+END //
+DELIMITER ;

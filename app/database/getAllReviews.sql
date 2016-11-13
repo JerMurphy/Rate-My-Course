@@ -1,0 +1,9 @@
+DELIMITER //
+DROP PROCEDURE IF EXISTS getAllReviews //
+
+CREATE PROCEDURE getAllReviews()
+BEGIN
+  SELECT * 
+    FROM reviews;
+END //
+DELIMITER ;
