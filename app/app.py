@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-
-import mySQLdb
+import MySQLdb
 from flask import Flask, render_template
 app = Flask(__name__)
 db = MySQLdb.connect(host='localhost',user='jmurray2',passwd='Mjm12RmR',db='jmurray2')
@@ -17,8 +16,9 @@ def getCourses():
   try:
     cursor = db.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute(sql)
-    result = cursor.fetchone()
-    print result
+    result = cursor.fetchall()
+    return "%s"%(str(result[0]))
+
   except Exception, e:
     print "Shit fucked up"
 
