@@ -41,6 +41,8 @@ def getCourseInfo(soup):
 			print courseID
 			print courseName
 			print professor
+			#TODO: courseSubject "CS"
+			#TODO: courseNum "1073"
 
 
 if __name__ == "__main__":

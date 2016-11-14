@@ -1,7 +1,7 @@
 import MySQLdb
 
 #connect to database
-db = MySQLdb.connect(host='info3103.cs.unb.ca',user='jmurray2',passwd='Mjm12RmR',db='courses')
+db = MySQLdb.connect(host='localhost',user='jmurray2',passwd='Mjm12RmR',db='jmurray2')
 cursor = db.cursor()
 
 #open file and save first line
@@ -19,11 +19,14 @@ while line:
 
   #data entry
   try:
-    cursor.execute("INSERT INTO courses(\"id\") VALUES(%s)",(course[0]))
-    cursor.execute("INSERT INTO courses(\"name\") VALUES(%s)",(course[1]))
-    cursor.execute("INSERT INTO courses(\"professor\") VALUES(%s)",(course[2]))
+    sql_insert = (
+      "INSERT INTO courses (id, name, prof) "
+      "VALUES(%s,%s,%s)"
+    )
+    data = (course[0],course[1],course[2])
+    cursor.execute(sql_insert, data)
     db.commit()
   except:
-    conn.rollback()
+    db.rollback()
 
 f.close() #close reader
