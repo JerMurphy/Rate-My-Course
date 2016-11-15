@@ -119,17 +119,34 @@ class GetCourses(Resource):
       #TODO: Get rid of
       cursor = db.cursor(MySQLdb.cursors.DictCursor)
       cursor.execute(sql)
-      result = cursor.fetchall()
-      return "%s"%(result[1])
+      result = json.dumps(cursor.fetchall())
+      return result
 
     except Exception, e:
       print "Shit fucked up"
+
+class GetReviews(Resource):
+  def get(self):
+    sql = "call getAllReviews()"
+
+    try:
+      #TODO: Get rid of
+      cursor = db.cursor(MySQLdb.cursors.DictCursor)
+      cursor.execute(sql)
+      result = json.dumps(cursor.fetchall())
+      return result
+
+    except Exception, e:
+      print "Shit fucked up"
+
+
 
 
 #Add url endpoints to api
 api = Api(app)
 api.add_resource(SignIn, '/signin')
 api.add_resource(GetCourses, '/courses')
+api.add_resource(GetReviews, '/reviews')
 
 if __name__ == "__main__":
     app.run(host=settings.APP_HOST, port=settings.APP_PORT, debug=settings.APP_DEBUG)
