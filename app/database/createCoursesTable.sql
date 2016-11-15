@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS courses;
 
 CREATE TABLE courses (
-  pk int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	id varchar(10) NOT NULL, /* example: CS1013 */ 
-	name varchar(64) NOT NULL, /* example: Intro to Java I */
-	prof varchar(500) NOT NULL, /* example: Natalie Webber, we should try and make this a list somehow */);
+  id varchar(8) NOT NULL PRIMARY KEY,
+	subject varchar(4) NOT NULL, /* example: CS1013 */ 
+	num varchar(4) NOT NULL, /* example: Intro to Java I */
+	name varchar(64) NOT NULL /* example: Natalie Webber, we should try and make this a list somehow */
+);
