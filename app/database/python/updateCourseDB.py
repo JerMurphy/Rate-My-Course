@@ -7,7 +7,7 @@ def insert_into_db(course):
   try:
     sql_insert = (
       "INSERT INTO courses (id, subject, num, name) "
-      "VALUES(%s,%s,%s,%s)"
+      "VALUES (%s,%s,%s,%s)"
     )
     data = (course[0],course[1],course[2],course[3])
     #print json.dumps(course)

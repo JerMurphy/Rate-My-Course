@@ -112,7 +112,8 @@ class SignIn(Resource):
   # ...later
 
 #returns list of courses in a dictionary list
-class GetAllCourses(Resource):
+#curl http://info3103.cs.unb.ca:39348/courses
+class AllCourses(Resource):
   def get(self):
     sql = "call getAllCourses()"
     try:
@@ -124,7 +125,8 @@ class GetAllCourses(Resource):
       print msg
 
 #returns list of reviews in a dictionary list
-class GetAllReviews(Resource):
+#curl http://info3103.cs.unb.ca:39348/reviews
+class AllReviews(Resource):
   def get(self):
     sql = "call getAllReviews()"
     try:
@@ -133,14 +135,37 @@ class GetAllReviews(Resource):
       result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
       return result
     except Exception, msg:
-      print msg
+      return msg
+
+  #curl -i -H "Content-Type: application/json" -X POST -d '{"review":"this course sucks", "tough_rating": "5", "courseload_rating": "5", "usefulness_rating": "1", "exam_bool": true, "courseId": "STAT4293", "postedBy": "jmurray2"}' http://info3103.cs.unb.ca:39348/reviews
+  def post(self):
+    try:
+      review = request.json['review']
+      tough_rating = request.json['tough_rating']
+      courseload_rating = request.json['courseload_rating']
+      usefulness_rating = request.json['usefulness_rating']
+      exam_bool = request.json['exam_bool']
+      courseId = request.json['courseId']
+      postedBy = request.json['postedBy']
+
+      sql_insert = (
+        "INSERT INTO reviews (review, tough_rating, courseload_rating, usefulness_rating, exam_bool, courseId, postedBy) "
+        "VALUES (%s,%s,%s,%s,%s,%s,%s)"
+      )
+      data = (review, tough_rating, courseload_rating, usefulness_rating, exam_bool, courseId, postedBy)
+      cursor = db.cursor()
+      cursor.execute(sql_insert, data)
+      db.commit()
+      #return?
+    except Exception, msg:
+      return msg
 
 
-#Add url endpoints to api
+#add url endpoints to api
 api = Api(app)
 api.add_resource(SignIn, '/signin')
-api.add_resource(GetCourses, '/courses')
-api.add_resource(GetReviews, '/reviews')
+api.add_resource(AllCourses, '/courses')
+api.add_resource(AllReviews, '/reviews')
 
 if __name__ == "__main__":
     app.run(host=settings.APP_HOST, port=settings.APP_PORT, debug=settings.APP_DEBUG)
