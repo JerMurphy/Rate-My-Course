@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-from flask import Flask, jsonify, abort, request, make_response, session
+from flask import Flask, jsonify, abort, request, make_response, session, Response
 from flask_restful import reqparse, Resource, Api
 from flask_session import Session
 import json
@@ -111,35 +111,29 @@ class SignIn(Resource):
   # Here's your chance to shine!
   # ...later
 
-class GetCourses(Resource):
+#returns list of courses in a dictionary list
+class GetAllCourses(Resource):
   def get(self):
     sql = "call getAllCourses()"
-
     try:
-      #TODO: Get rid of
       cursor = db.cursor(MySQLdb.cursors.DictCursor)
       cursor.execute(sql)
-      result = json.dumps(cursor.fetchall())
+      result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
       return result
+    except Exception, msg:
+      print msg
 
-    except Exception, e:
-      print "Shit fucked up"
-
-class GetReviews(Resource):
+#returns list of reviews in a dictionary list
+class GetAllReviews(Resource):
   def get(self):
     sql = "call getAllReviews()"
-
     try:
-      #TODO: Get rid of
       cursor = db.cursor(MySQLdb.cursors.DictCursor)
       cursor.execute(sql)
-      result = json.dumps(cursor.fetchall())
+      result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
       return result
-
-    except Exception, e:
-      print "Shit fucked up"
-
-
+    except Exception, msg:
+      print msg
 
 
 #Add url endpoints to api
