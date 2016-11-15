@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup
 soup1 = BeautifulSoup(open("Fredericton_2016_Summer_CS_INFO.html"), 'html.parser')
 soup2 = BeautifulSoup(open("Fredericton_2016_Fall_CS_INFO.html"), 'html.parser')
 soup3 = BeautifulSoup(open("Fredericton_2017_Winter_CS_INFO.html"), 'html.parser')
+listOfCourses = []
 
 def getCourseInfo(soup):
-	courseInfo = {}
 	numberOfCourses = 0
 
 	#get number of courses
@@ -16,33 +16,45 @@ def getCourseInfo(soup):
 	for i in range(1,numberOfCourses+1):
 		courseHTML = "SEC_SHORT_TITLE_" + str(i)
 		professorHTML = "SEC_FACULTY_INFO_" + str(i)
-
 		rawCourse = soup.find(id=courseHTML).text
+		courseSubject = ""
+		courseNum = ""
 		courseID = ""
 		courseName = ""
+
 		#get professor text & get rid of new lines
-		professor = "".join( (soup.find(id=professorHTML).text).splitlines() )
+		#professor = "".join( (soup.find(id=professorHTML).text).splitlines() )
 
 		#get course ID from string
+		# CS*1073*
 		index = 0
 		starCounter = 0
 		while starCounter < 2:
 			if rawCourse[index] == "*":
 				starCounter += 1
-			else:
+			elif starCounter < 1:
+				courseSubject += rawCourse[index]
+				courseID += rawCourse[index]
+			elif starCounter == 1:
+				courseNum += rawCourse[index]
 				courseID += rawCourse[index]
 			index += 1
 
 		#get course name from string
 		courseName += " ".join(rawCourse.split()[2:len(rawCourse.split())])
 
+		if (courseID in listOfCourses):
+			continue
+		else:
+			listOfCourses.append(courseID)
+
 		#ignore cscoop and cspep
 		if (courseID != "CSCOOP") and (courseID != "CSPEP"):
 			print courseID
+			print courseSubject
+			print courseNum
 			print courseName
-			print professor
-			#TODO: courseSubject "CS"
-			#TODO: courseNum "1073"
+			#print professor
 
 
 if __name__ == "__main__":

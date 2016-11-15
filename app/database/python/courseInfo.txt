@@ -1,321 +1,240 @@
 CS1083
+CS
+1083
 Intro Comp Prog II (in Java)
-E. El-Shanta
 CS2043
+CS
+2043
 Software Engineering I
-Natalie Webber
 CS2253
+CS
+2253
 Machine Level Programming
-Aziz Fellah
 CS2333
+CS
+2333
 Computab.& Formal Lang.
-Michael Fleming
 CS3413
+CS
+3413
 Operating Systems I
-Natalia Stakhanova
 CS3853
+CS
+3853
 Comp Architecture & Organizat
-Alexis Morris
 CS4983
+CS
+4983
 Senior Technical Report
-Will Hyslop
 CS4997
+CS
+4997
 Honours Thesis
-Will Hyslop
 CS6905
+CS
+6905
 Computer Vision
-R. Herpers
-CS6905
-Artificail Neural Networks
-Paul G. Ploeger
 CS6995
+CS
+6995
 Master's Project
-Gerhard Dueck
 CS6996
+CS
+6996
 Master's Report
-Patricia Evans
 CS6997
+CS
+6997
 Master's Thesis
-Patricia Evans
 CS6998
+CS
+6998
 Phd Thesis
-Patricia Evans
 CS6999
+CS
+6999
 Security Data Visual
-Ali Ghorbani
-CS6999
-Arch. Big Data Sys.
-Suprio Ray
-CS6999
-Information Visualization
-Scott Bateman
-CS6999
-Garbage Collection
-Kenneth Kent
 INFO1103
+INFO
+1103
 Data & Information Management
-Taees Eimouri
 CS1003
+CS
+1003
 Prog & Problem Solving for Eng
-C. Paul Cook, Leah Bidlake
-CS1003
-Prog & Problem Solving for Eng
-C. Paul Cook, Leah Bidlake
 CS1023
+CS
+1023
 Data Structures & Algorithms
-Huajie Zhang
 CS1073
+CS
+1073
 Intr Comp Prog I (in Java)
-Natalie Webber
-CS1073
-Intr Comp Prog I (in Java)
-Eric Aubanel
-CS1073
-Intr Comp Prog I (in Java)
-Scott Bateman
-CS1073
-Intr Comp Prog I (in Java)
-Natalie Webber
-CS1083
-Intro Comp Prog II (in Java)
-Przemyslaw Pochec
 CS1203
+CS
+1203
 Overview of Computer Science
-Wei Song
-CS1203
-Overview of Computer Science
-Wei Song
 CS1303
+CS
+1303
 Discrete Structures
-Michael Fleming
-CS2043
-Software Engineering I
-Weichang Du
-CS2043
-Software Engineering I
-Weichang Du
-CS2253
-Machine Level Programming
-Gerhard Dueck
-CS2253
-Machine Level Programming
-Gerhard Dueck
 CS2383
+CS
+2383
 Data Structures and Algorithms
-R. Lu
 CS2545
+CS
+2545
 Data Sci for Big Data Analytic
-Suprio Ray
 CS2999
+CS
+2999
 Problem Solving for Programmer
-Scott Bateman
 CS3025
+CS
+3025
 Human Computer Interaction
-Scott Bateman
 CS3113
+CS
+3113
 Intro to Numerical Methods
-K. Nasartschuk
 CS3383
+CS
+3383
 Algorithm Design & Analysis
-David Bremner
-CS3413
-Operating Systems I
-Leah Bidlake
 CS3873
+CS
+3873
 Net-Centric Computing
-Przemyslaw Pochec
 CS3997
+CS
+3997
 Professional Practice
-Andrew J. McAllister
 CS4735
+CS
+4735
 Computer Graphics
-David Bremner
 CS4745
+CS
+4745
 Intro to Parallel Process
-Eric Aubanel
 CS4935
+CS
+4935
 Adv'd. Algorithmic Techniques
-Patricia Evans
-CS4983
-Senior Technical Report
-Przemyslaw Pochec
-CS4997
-Honours Thesis
-Przemyslaw Pochec
 CS4998
+CS
+4998
 Open Source Project
-Przemyslaw Pochec
 CS6003
+CS
+6003
 Research Methods for CS
-Patricia Evans
 CS6025
+CS
+6025
 Parallel/Dist Proc I
-Eric Aubanel
 CS6585
+CS
+6585
 Database Foundations
-Suprio Ray
 CS6735
+CS
+6735
 Machine Learning & Data Mining
-Huajie Zhang
 CS6895
+CS
+6895
 Wireless Net & Mobile Communic
-Wei Song
 CS6991
+CS
+6991
 Algorithm Analysis
-Patricia Evans
-CS6996
-Master's Report
-Patricia Evans
-CS6997
-Master's Thesis
-Patricia Evans
-CS6998
-Phd Thesis
-Patricia Evans
-INFO1103
-Data & Information Management
-Will Hyslop
 INFO3103
+INFO
+3103
 Programming on the Web
-Rick Wightman
 INFO3303
+INFO
+3303
 Enterprise Information System
-Will Hyslop
 INFO4900
+INFO
+4900
 Inform'n.System Design Project
-Will Hyslop
-CS1003
-Prog & Problem Solving for Eng
-Wei Song
-CS1073
-Intr Comp Prog I (in Java)
-Natalie Webber
-CS1083
-Intro Comp Prog II (in Java)
-Scott Bateman
-CS1083
-Intro Comp Prog II (in Java)
-Leah Bidlake
-CS1083
-Intro Comp Prog II (in Java)
-Eric Aubanel
-CS1303
-Discrete Structures
-Huajie Zhang
-CS1303
-Discrete Structures
-Huajie Zhang
-CS2043
-Software Engineering I
-Natalie Webber
 CS2053
+CS
+2053
 Intro to Game Development
-Weichang Du
 CS2063
+CS
+2063
 Intro to Mobile Applic Develop
-Rick Wightman
-CS2253
-Machine Level Programming
-Przemyslaw Pochec
 CS2263
+CS
+2263
 Procedural Program Development
-Eric Aubanel
-CS2333
-Computab.& Formal Lang.
-Patricia Evans
-CS2383
-Data Structures and Algorithms
-To be Announced
-CS2999
-Problem Solving for Programmer
-To be Announced
-CS3383
-Algorithm Design & Analysis
-Huajie Zhang
-CS3413
-Operating Systems I
-Leah Bidlake
 CS3503
+CS
+3503
 Syst. Anal., Design & Pro.Mgmt
-Andrew J. McAllister
 CS3613
+CS
+3613
 Programming Languages
-David Bremner
 CS3703
+CS
+3703
 Multimedia Design
-Natalie Webber
-CS3853
-Comp Architecture & Organizat
-Gerhard Dueck
-CS3873
-Net-Centric Computing
-Wei Song
 CS4015
+CS
+4015
 Software Arch.& Design Pattern
-Weichang Du
 CS4065
+CS
+4065
 Interactive Human-Centered Sys
-Scott Bateman
 CS4545
+CS
+4545
 Big Data Systems
-Suprio Ray
 CS4725
+CS
+4725
 Intro Artificial Intell
-Michael Fleming
-CS4983
-Senior Technical Report
-Przemyslaw Pochec
-CS4997
-Honours Thesis
-Przemyslaw Pochec
 CS5865
+CS
+5865
 Advanced Data Comm & Ntwkg
-Przemyslaw Pochec
 CS6065
+CS
+6065
 Interactive Human-Centered Sys
-Scott Bateman
 CS6075
+CS
+6075
 Software Architecture
-Weichang Du
 CS6355
+CS
+6355
 Cryptoanal & Data Base S
-Rodney H. Cooper
 CS6375
+CS
+6375
 Linear Programming
-David Bremner
 CS6545
+CS
+6545
 Big Data Systems
-Suprio Ray
 CS6705
+CS
+6705
 Fndns. of Artificial Intellig.
-Michael Fleming
-CS6905
-Dynamic Memory Management
-Gerhard Dueck
-CS6996
-Master's Report
-Patricia Evans
-CS6997
-Master's Thesis
-Patricia Evans
-CS6998
-Phd Thesis
-Patricia Evans
-INFO1103
-Data & Information Management
-Rick Wightman
-INFO1103
-Data & Information Management
-Leah Bidlake
-INFO1103
-Data & Information Management
-Rick Wightman
 INFO2403
+INFO
+2403
 Information Security
-Natalia Stakhanova
 INFO3403
+INFO
+3403
 Info. System Administration
-Suprio Ray
-INFO4900
-Inform'n.System Design Project
-Will Hyslop
