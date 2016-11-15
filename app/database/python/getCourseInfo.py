@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 
-soup1 = BeautifulSoup(open("Fredericton_2016_Summer_CS_INFO.html"), 'html.parser')
-soup2 = BeautifulSoup(open("Fredericton_2016_Fall_CS_INFO.html"), 'html.parser')
-soup3 = BeautifulSoup(open("Fredericton_2017_Winter_CS_INFO.html"), 'html.parser')
+soup1 = BeautifulSoup(open("Fredericton_2016_CS_INFO_MATH_MAAC_STAT_Summer.html"), 'html.parser')
+soup2 = BeautifulSoup(open("Fredericton_2016_CS_INFO_MATH_MAAC_STAT_Fall.html"), 'html.parser')
+soup3 = BeautifulSoup(open("Fredericton_2017_CS_INFO_MATH_MAAC_STAT_Winter.html"), 'html.parser')
 listOfCourses = []
 
 def getCourseInfo(soup):

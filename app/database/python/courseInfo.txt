@@ -58,6 +58,82 @@ INFO1103
 INFO
 1103
 Data & Information Management
+MAAC2095
+MAAC
+2095
+Introduction to Video Games
+MAAC3601
+MAAC
+3601
+Game Design I
+MAAC4951
+MAAC
+4951
+Professional Practice
+MATH0863
+MATH
+0863
+Precalculus Mathematics
+MATH1003
+MATH
+1003
+Intro to Calculus I
+MATH1013
+MATH
+1013
+Intro to Calculus II
+MATH1503
+MATH
+1503
+Intro to Linear Algebra
+MATH1823
+MATH
+1823
+Calculus for Mgmt. Sciences
+MATH1833
+MATH
+1833
+Finite Math for Mgmt. Sciences
+MATH6022
+MATH
+6022
+Group Theory
+MATH6032
+MATH
+6032
+Ring Theory
+MATH6996
+MATH
+6996
+Master's Reports
+MATH6997
+MATH
+6997
+Master's Thesis
+MATH6998
+MATH
+6998
+Ph D Thesis
+STAT2263
+STAT
+2263
+Stat for Non-Science Majors
+STAT2593
+STAT
+2593
+Prob Stats for Engin
+STAT6996
+STAT
+6996
+Master's Report
+STAT6997
+STAT
+6997
+Master's Thesis
+STAT6998
+STAT
+6998
+Ph D Thesis
 CS1003
 CS
 1003
@@ -162,6 +238,178 @@ INFO4900
 INFO
 4900
 Inform'n.System Design Project
+MAAC1021
+MAAC
+1021
+Intro to Culture,Arts & Media
+MAAC2021
+MAAC
+2021
+Popular Culture
+MAAC2022
+MAAC
+2022
+The Art of Film
+MAAC2998
+MAAC
+2998
+Digital Film Production I
+MAAC3072
+MAAC
+3072
+Contemporary German Cinema
+MAAC3082
+MAAC
+3082
+History of Canadian Cinema
+MAAC3101
+MAAC
+3101
+Media Design I
+MAAC3113
+MAAC
+3113
+Music, Computers & Technology
+MAAC3401
+MAAC
+3401
+Digital Culture
+MAAC3999
+MAAC
+3999
+Editing and Post Production
+MAAC4000
+MAAC
+4000
+Digital Film Production III
+MAAC5000
+MAAC
+5000
+Honours Thesis
+MATH1053
+MATH
+1053
+Enri'd Intro to Calc I
+MATH2003
+MATH
+2003
+Intermediate Math I
+MATH2203
+MATH
+2203
+Discrete Mathematics
+MATH2513
+MATH
+2513
+Multivariable Calc.For Eng.
+MATH3043
+MATH
+3043
+Ordinary Differential Equat
+MATH3093
+MATH
+3093
+Elem Number Theory
+MATH3103
+MATH
+3103
+Analysis I
+MATH3213
+MATH
+3213
+Linear Algebra II
+MATH3243
+MATH
+3243
+Complex Analysis
+MATH3413
+MATH
+3413
+Intro to Numerical Methods
+MATH3623
+MATH
+3623
+History of Mathematics
+MATH3803
+MATH
+3803
+Intro to Math. of Finance
+MATH4043
+MATH
+4043
+Advanced Algebra
+MATH4063
+MATH
+4063
+Advanced Geometry
+MATH4100
+MATH
+4100
+Honours Project
+MATH4473
+MATH
+4473
+Intro to Differen Geomet
+MATH6132
+MATH
+6132
+Theory/Partial Diff Equat
+MATH6392
+MATH
+6392
+Seminar/Pure & App Math
+MATH6473
+MATH
+6473
+Intro to Differential Geometry
+MATH6492
+MATH
+6492
+Adv Sem in Pure & Appl
+MATH6501
+MATH
+6501
+C*-Algebras, K-Theory
+MATH6903
+MATH
+6903
+Advanced Geometry
+MATH6991
+MATH
+6991
+Convex Polytopes
+STAT2264
+STAT
+2264
+Stats for Biology
+STAT3083
+STAT
+3083
+Prob & Math Stat I
+STAT3373
+STAT
+3373
+Elem Experiment Design
+STAT4293
+STAT
+4293
+Statistical Computing
+STAT6392
+STAT
+6392
+Seminar in Statistics
+STAT6433
+STAT
+6433
+Statistical Computing
+STAT6473
+STAT
+6473
+Experimental Design
+STAT6492
+STAT
+6492
+Adv.Seminar in Statistics
 CS2053
 CS
 2053
@@ -214,10 +462,6 @@ CS6075
 CS
 6075
 Software Architecture
-CS6355
-CS
-6355
-Cryptoanal & Data Base S
 CS6375
 CS
 6375
@@ -238,3 +482,135 @@ INFO3403
 INFO
 3403
 Info. System Administration
+MAAC1023
+MAAC
+1023
+Media, Tech & Creativity
+MAAC2797
+MAAC
+2797
+Rock & American Popular Music
+MAAC2999
+MAAC
+2999
+Digital Film Production II
+MAAC3001
+MAAC
+3001
+Media Arts
+MAAC3065
+MAAC
+3065
+Horror Across Media & Culture
+MAAC3087
+MAAC
+3087
+Serial Media and Fandom
+MAAC3095
+MAAC
+3095
+Digital Game Studies
+MAAC3102
+MAAC
+3102
+Media Design II
+MAAC3602
+MAAC
+3602
+Game Design II
+MAAC4401
+MAAC
+4401
+Animation Principles
+MATH1063
+MATH
+1063
+Enr'd Intro to Calc II
+MATH2013
+MATH
+2013
+Intermediate Math II
+MATH2213
+MATH
+2213
+Linear Algebra I
+MATH2633
+MATH
+2633
+Fund'l.Princ.Elem.School Math.
+MATH3003
+MATH
+3003
+Applied Analysis
+MATH3033
+MATH
+3033
+Group Theory
+MATH3063
+MATH
+3063
+Geometry
+MATH3113
+MATH
+3113
+Analysis II
+MATH3343
+MATH
+3343
+Networks and Graphs
+MATH3373
+MATH
+3373
+Intro to Game Theory
+MATH3463
+MATH
+3463
+Special Relativity
+MATH3503
+MATH
+3503
+Diff Equats for Eng
+MATH3543
+MATH
+3543
+Diff Geometry for Geomatic Eng
+MATH4483
+MATH
+4483
+Intro to General Relativ
+MATH4563
+MATH
+4563
+Mathematical Biology
+MATH4903
+MATH
+4903
+Advanced Graph Theory
+MATH6483
+MATH
+6483
+Intro to Gen Relativity
+STAT3093
+STAT
+3093
+Prob & Math Stat II
+STAT4073
+STAT
+4073
+Categorical Data Analysis
+STAT4083
+STAT
+4083
+Intro to Multivar Stat
+STAT6073
+STAT
+6073
+Categorical Data Analysis
+STAT6083
+STAT
+6083
+Intro to Multivariate Stats
+STAT6211
+STAT
+6211
+Mathematical Statistics
