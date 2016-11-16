@@ -20,3 +20,5 @@ curl -i -H "Content-Type: application/json" -X POST -d '{"review":"this course s
 
 
 #/reviews PUT
+curl -i -H "Content-Type: application/json" -X PUT -d '{"review":"the new put worked", "tough_rating": "5", "courseload_rating": "5", "usefulness_rating": "1", "exam_bool": true, "courseId": "CS1073", "postedBy": "jmurray2","id":"1"}' http://info3103.cs.unb.ca:43327/reviews/reviewID
+
