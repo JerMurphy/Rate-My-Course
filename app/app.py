@@ -79,7 +79,7 @@ class SignIn(Resource):
   def get(self):
     success = False
     if 'username' in session:
-      response = {'status': 'success'}
+      response = {'status': 'success', 'username': session['username']}
       responseCode = 200
     else:
       response = {'status': 'fail'}
@@ -91,12 +91,26 @@ class SignIn(Resource):
   # curl -i -H "Content-Type: application/json" -X DELETE -b cookie-jar -k https://info3103.cs.unb.ca:39348/signin
   def delete(self):
     if 'username' in session:
-      response = {'status': 'success'}
+      response = {'status': 'success', 'username': session['username']}
       responseCode = 200
       session.clear() #clear current session
     else:
       response = {'status': 'fail'}
       responseCode = 403
+    
+
+#returns list of courses in a dictionary list
+#curl http://info3103.cs.unb.ca:39348/courses
+class AllCourses(Resource):
+  def get(self):
+    sql = "call getAllCourses()"
+    try:
+      cursor = db.cursor(MySQLdb.cursors.DictCursor)
+      cursor.execute(sql)
+      result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
+      return result
+    except Exception, msg:
+      print msg
 
     return make_response(jsonify(response), responseCode)
 
@@ -141,10 +155,8 @@ class AllReviews(Resource):
         courseId = request.json['courseId']
         postedBy = request.json['postedBy']
 
-        sql_insert = (
-          "INSERT INTO reviews (review, tough_rating, courseload_rating, usefulness_rating, exam_bool, courseId, postedBy) "
-          "VALUES (%s,%s,%s,%s,%s,%s,%s)"
-        )
+        sql_insert = "call postReview(%s,%s,%s,%s,%s,%s,%s)"
+        
         data = (review, tough_rating, courseload_rating, usefulness_rating, exam_bool, courseId, postedBy)
         cursor = db.cursor()
         cursor.execute(sql_insert, data)
@@ -157,12 +169,78 @@ class AllReviews(Resource):
       responseCode = 401
       return make_response(jsonify(response), responseCode)
 
+class SpecificReviews(Resource):
+  def get(self):
+ 
+    try:
+      courseID = request.json['courseID']
+      sql = "call getSpecReviews(%s)"
+      data = (courseID)
+      cursor = db.cursor(MySQLdb.cursors.DictCursor)
+      cursor.execute(sql,data)
+      result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
+      return result
+    except Exception, msg:
+      return msg
+
+class ManipulateReviews(Resource):
+  def delete(self):
+ 
+    try:
+      reviewID = request.json['id']
+      sql = "DELETE from reviews WHERE id = %s"
+      data = (reviewID)
+      cursor = db.cursor(MySQLdb.cursors.DictCursor)
+      cursor.execute(sql,data)
+      result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
+      return result
+    except Exception, msg:
+      return msg
+
+  #Works now, have to input all data when updating even if its the same
+  def put(self):
+    try:
+      reviewID = request.json['id']
+      review = request.json['review']
+      tough_rating = request.json['tough_rating']
+      courseload_rating = request.json['courseload_rating']
+      usefulness_rating = request.json['usefulness_rating']
+      exam_bool = request.json['exam_bool']
+      courseId = request.json['courseId']
+
+      sql_insert = "call updateReview(%s,%s,%s,%s,%s,%s,%s)"
+      data = (review,tough_rating,courseload_rating,usefulness_rating,exam_bool,courseId,reviewID)
+      cursor = db.cursor(MySQLdb.cursors.DictCursor)
+      cursor.execute(sql_insert,data)
+      result = cursor.fetchall()
+      return result
+
+
+    except Exception, msg:
+      return msg
+      
+class SpecificCourseSubjects(Resource):
+  def get(self):
+    try:
+      subject = request.json['subject']
+      sql = "SELECT * FROM courses WHERE subject = %s"
+      data = (subject)
+      cursor = db.cursor(MySQLdb.cursors.DictCursor)
+      cursor.execute(sql,data)
+      result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
+      return result
+    except Exception, msg:
+      return msg
+  
 
 # add url endpoints to api
 api = Api(app)
 api.add_resource(SignIn, '/signin')
 api.add_resource(AllCourses, '/courses')
 api.add_resource(AllReviews, '/reviews')
+api.add_resource(SpecificReviews, '/reviews/courseID')
+api.add_resource(SpecificCourseSubjects, '/courses/subject')
+api.add_resource(ManipulateReviews, '/reviews/reviewID')
 
 
 if __name__ == "__main__":
