@@ -1,22 +1,22 @@
-#/signin GET
+/signin GET
 curl -i -H "Content-Type: application/json" -X GET -b cookie-jar -k https://info3103.cs.unb.ca:39348/signin
 
-#/signin POST
+/signin POST
 curl -i -H "Content-Type: application/json" -X POST -d '{"username": "jmurray2", "password": "***"}' -c cookie-jar -k https://info3103.cs.unb.ca:39348/signin
 
-#/signin DELETE
+/signin DELETE
 curl -i -H "Content-Type: application/json" -X DELETE -b cookie-jar -k https://info3103.cs.unb.ca:39348/signin
 
-#/courses GET
+/courses GET
 curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/courses
 
-#/reviews GET
+/reviews GET
 curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/reviews
 
-#/reviews POST
+/reviews POST
 curl -i -H "Content-Type: application/json" -X POST -d '{"review":"this course sucks", "tough_rating": "5", "courseload_rating": "5", "usefulness_rating": "1", "exam_bool": true, "courseId": "STAT4293", "postedBy": "jmurray2"}' -b cookie-jar -k https://info3103.cs.unb.ca:39348/reviews
 
-#/reviews DELETE
+/reviews DELETE
 
 
-#/reviews PUT
+/reviews PUT
