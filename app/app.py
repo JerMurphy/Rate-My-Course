@@ -53,7 +53,7 @@ class SignIn(Resource):
       abort(400) # bad request
 
     if request_params['username'] in session:
-      response = {'status': 'success'}
+      response = {'status': 'success', 'username': request_params['username']}
       responseCode = 200
     else:
       try:
@@ -64,10 +64,10 @@ class SignIn(Resource):
         # At this point we have sucessfully authenticated. 
 
         session['username'] = request_params['username']
-        response = {'status': 'success' }
+        response = {'status': 'success', 'username': session['username']}
         responseCode = 201
       except ldap.LDAPError, error_message:
-        response = {'status': 'Access denied'}
+        response = {'status': 'access denied'}
         responseCode = 403
       finally:
         l.unbind()
@@ -82,7 +82,7 @@ class SignIn(Resource):
       response = {'status': 'success', 'username': session['username']}
       responseCode = 200
     else:
-      response = {'status': 'fail'}
+      response = {'status': 'no session found'}
       responseCode = 403
 
     return make_response(jsonify(response), responseCode)
@@ -95,13 +95,15 @@ class SignIn(Resource):
       responseCode = 200
       session.clear() #clear current session
     else:
-      response = {'status': 'fail'}
+      response = {'status': 'no session found'}
       responseCode = 403
+
+    return make_response(jsonify(response), responseCode)
     
 
 #returns list of courses in a dictionary list
-#curl http://info3103.cs.unb.ca:39348/courses
 class AllCourses(Resource):
+  # curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/courses
   def get(self):
     sql = "call getAllCourses()"
     try:
@@ -118,17 +120,14 @@ class AllCourses(Resource):
 # curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/courses
 class AllCourses(Resource):
     def get(self):
-      if 'username' in session:
-        sql = "call getAllCourses()"
-        try:
-          cursor = db.cursor(MySQLdb.cursors.DictCursor)
-          cursor.execute(sql)
-          result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
-          return result
-        except Exception, msg:
-          print msg
-      else:
-        print "no session:("
+      sql = "call getAllCourses()"
+      try:
+        cursor = db.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute(sql)
+        result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
+        return result
+      except Exception, msg:
+        print msg
 
 # returns list of reviews in a dictionary list
 # curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/reviews
@@ -171,7 +170,6 @@ class AllReviews(Resource):
 
 class SpecificReviews(Resource):
   def get(self):
- 
     try:
       courseID = request.json['courseID']
       sql = "call getSpecReviews(%s)"
@@ -199,25 +197,35 @@ class ManipulateReviews(Resource):
 
   #Works now, have to input all data when updating even if its the same
   def put(self):
-    try:
-      reviewID = request.json['id']
-      review = request.json['review']
-      tough_rating = request.json['tough_rating']
-      courseload_rating = request.json['courseload_rating']
-      usefulness_rating = request.json['usefulness_rating']
-      exam_bool = request.json['exam_bool']
-      courseId = request.json['courseId']
+    if 'username' in session:
+      try:
+        postedBy = request.json['postedBy']
+        if 'username' == postedBy:
+          reviewID = request.json['id']
+          review = request.json['review']
+          tough_rating = request.json['tough_rating']
+          courseload_rating = request.json['courseload_rating']
+          usefulness_rating = request.json['usefulness_rating']
+          exam_bool = request.json['exam_bool']
+          courseId = request.json['courseId']
 
-      sql_insert = "call updateReview(%s,%s,%s,%s,%s,%s,%s)"
-      data = (review,tough_rating,courseload_rating,usefulness_rating,exam_bool,courseId,reviewID)
-      cursor = db.cursor(MySQLdb.cursors.DictCursor)
-      cursor.execute(sql_insert,data)
-      result = cursor.fetchall()
-      return result
+          sql_insert = "call updateReview(%s,%s,%s,%s,%s,%s,%s)"
+          data = (review,tough_rating,courseload_rating,usefulness_rating,exam_bool,courseId,reviewID)
+          cursor = db.cursor(MySQLdb.cursors.DictCursor)
+          cursor.execute(sql_insert,data)
+          result = cursor.fetchall()
+          return result
+        else: 
+          response = {'status': 'unauthorized'}
+          responseCode = 401
+      except Exception, msg:
+        return msg
+    else:
+      response = {'status': 'unauthorized'}
+      responseCode = 401
+    
+    return make_response(jsonify(response), responseCode)
 
-
-    except Exception, msg:
-      return msg
       
 class SpecificCourseSubjects(Resource):
   def get(self):

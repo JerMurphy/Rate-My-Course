@@ -2,7 +2,7 @@
 curl -i -H "Content-Type: application/json" -X GET -b cookie-jar -k https://info3103.cs.unb.ca:39348/signin
 
 /signin POST
-curl -i -H "Content-Type: application/json" -X POST -d '{"username": "jmurray2", "password": "***"}' -c cookie-jar -k https://info3103.cs.unb.ca:39348/signin
+curl -i -H "Content-Type: application/json" -X POST -d '{"username": "jmurray2", "password": ""}' -c cookie-jar -k https://info3103.cs.unb.ca:39348/signin
 
 /signin DELETE
 curl -i -H "Content-Type: application/json" -X DELETE -b cookie-jar -k https://info3103.cs.unb.ca:39348/signin
@@ -18,5 +18,5 @@ curl -i -H "Content-Type: application/json" -X POST -d '{"review":"this course s
 
 /reviews DELETE
 
-
 /reviews PUT
+curl -i -H "Content-Type: application/json" -X PUT -d '{"review":"the new put worked", "tough_rating": "5", "courseload_rating": "5", "usefulness_rating": "1", "exam_bool": true, "courseId": "CS1073", "postedBy": "jmurray2","id":"1"}' https://info3103.cs.unb.ca:43327/reviews/reviewID
