@@ -115,6 +115,19 @@ class AllCourses(Resource):
       return make_response(jsonify({'status':'Bad request'}), 400)
 
 
+class CourseSubjects(Resource):
+  def get(self, courseSubject):
+    try:
+      cursor = db.cursor(MySQLdb.cursors.DictCursor)
+      cursor.callproc('getSpecCourses',[courseSubject])
+
+      resp = Response( json.dumps(cursor.fetchall()), status=200, mimetype="application/json" )
+      return resp
+    except Exception, msg:
+      print msg
+      return make_response(jsonify({'status':'Bad request'}), 400)
+
+      
 # returns list of reviews in a dictionary list
 class AllReviews(Resource):
   # curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/reviews
@@ -223,19 +236,6 @@ class ManipulateReviews(Resource):
         return make_response(jsonify({'status':'Bad request'}), 400)
     else:
       return make_response(jsonify({'status':'Unauthorized'}), 401)
-
-      
-class CourseSubjects(Resource):
-  def get(self, courseSubject):
-    try:
-      cursor = db.cursor(MySQLdb.cursors.DictCursor)
-      cursor.callproc('getSpecCourses',[courseSubject])
-
-      resp = Response( json.dumps(cursor.fetchall()), status=200, mimetype="application/json" )
-      return resp
-    except Exception, msg:
-      print msg
-      return make_response(jsonify({'status':'Bad request'}), 400)
 
 
 # add url endpoints to api
