@@ -115,6 +115,7 @@ class AllCourses(Resource):
       return make_response(jsonify({'status':'Bad request'}), 400)
 
 
+#returns list of all courses given a subject
 class CourseSubjects(Resource):
   def get(self, courseSubject):
     try:
@@ -127,8 +128,8 @@ class CourseSubjects(Resource):
       print msg
       return make_response(jsonify({'status':'Bad request'}), 400)
 
-      
-# returns list of reviews in a dictionary list
+
+#returns/posts list of reviews in a dictionary list
 class AllReviews(Resource):
   # curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/reviews
   def get(self):
@@ -173,8 +174,9 @@ class AllReviews(Resource):
     return make_response(jsonify(response), responseCode)
 
 
+#returns list of reviews given a courseID
 class SpecificReviews(Resource):
-  # curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/reviews/{CS1073}
+  # curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/reviews/CS1073
   def get(self, courseID):
     try:
       cursor = db.cursor(MySQLdb.cursors.DictCursor)
@@ -186,8 +188,10 @@ class SpecificReviews(Resource):
       print msg
       return make_response(jsonify({'status':'Bad request'}), 400)
 
+
+#edit/delete review owned by yourself
 class ManipulateReviews(Resource):
-  #curl -i -H "Content-Type: application/json" -X DELETE -d '{"postedBy": "jmurray2"}' -b cookie-jar -k https://info3103.cs.unb.ca:39348/reviews/#
+  #curl -i -H "Content-Type: application/json" -X DELETE -d '{"postedBy": "jmurray2"}' -b cookie-jar -k https://info3103.cs.unb.ca:39348/reviews/1
   def delete(self, reviewID):
     if 'username' in session:
       postedBy = request.json['postedBy']
@@ -207,8 +211,7 @@ class ManipulateReviews(Resource):
     else:
       return make_response(jsonify({'status':'Unauthorized'}), 401)
     
-
-  #Works now, have to input all data when updating even if its the same
+  #curl -i -H "Content-Type: application/json" -X PUT -d '{"review":"i love this course!", "tough_rating": "5", "courseload_rating": "5", "usefulness_rating": "1", "exam_bool": true, "courseId": "CS1073", "postedBy": "jmurray2"}' -b cookie-jar -k https://info3103.cs.unb.ca:39348/reviews/1
   def put(self, reviewID):
     if 'username' in session:
       try:
