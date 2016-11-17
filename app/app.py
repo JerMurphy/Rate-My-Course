@@ -27,18 +27,17 @@ Session(app)
 ##
 @app.errorhandler(400) # decorators to add to 400 response
 def not_found(error):
-  return make_response(jsonify( { 'status': 'Bad request' } ), 400)
+  return make_response(jsonify({'status':'Bad request'}), 400)
 
 @app.errorhandler(404) # decorators to add to 404 response
 def not_found(error):
-  return make_response(jsonify( { 'status': 'Resource not found' } ), 404)
+  return make_response(jsonify({'status': 'Resource not found'}), 404)
 
 
 class SignIn(Resource):
   # POST: Set Session and return Cookie
-  # curl -i -H "Content-Type: application/json" -X POST -d '{"username": "jmurray2", "password": "$Weld839z$"}' -c cookie-jar -k https://info3103.cs.unb.ca:39348/signin
+  # curl -i -H "Content-Type: application/json" -X POST -d '{"username": "jmurray2", "password": "***"}' -c cookie-jar -k https://info3103.cs.unb.ca:39348/signin
   def post(self):
-
     if not request.json:
       abort(400) # bad request
 
@@ -64,7 +63,7 @@ class SignIn(Resource):
         # At this point we have sucessfully authenticated. 
 
         session['username'] = request_params['username']
-        response = {'status': 'success', 'username': session['username']}
+        response = {'status': 'login successful', 'username': session['username']}
         responseCode = 201
       except ldap.LDAPError, error_message:
         response = {'status': 'access denied'}
@@ -79,7 +78,7 @@ class SignIn(Resource):
   def get(self):
     success = False
     if 'username' in session:
-      response = {'status': 'success', 'username': session['username']}
+      response = {'status': 'logged in', 'username': session['username']}
       responseCode = 200
     else:
       response = {'status': 'no session found'}
@@ -91,7 +90,7 @@ class SignIn(Resource):
   # curl -i -H "Content-Type: application/json" -X DELETE -b cookie-jar -k https://info3103.cs.unb.ca:39348/signin
   def delete(self):
     if 'username' in session:
-      response = {'status': 'success', 'username': session['username']}
+      response = {'status': 'successfully logged out'}
       responseCode = 200
       session.clear() #clear current session
     else:
@@ -105,44 +104,32 @@ class SignIn(Resource):
 class AllCourses(Resource):
   # curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/courses
   def get(self):
-    sql = "call getAllCourses()"
     try:
       cursor = db.cursor(MySQLdb.cursors.DictCursor)
-      cursor.execute(sql)
-      result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
-      return result
+      cursor.callproc('getAllCourses')
+
+      resp = Response( json.dumps(cursor.fetchall()), status=200, mimetype="application/json" )
+      return resp
     except Exception, msg:
       print msg
+      return make_response(jsonify({'status':'Bad request'}), 400)
 
-    return make_response(jsonify(response), responseCode)
-
-# returns list of courses in a dictionary list
-# curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/courses
-class AllCourses(Resource):
-    def get(self):
-      sql = "call getAllCourses()"
-      try:
-        cursor = db.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute(sql)
-        result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
-        return result
-      except Exception, msg:
-        print msg
 
 # returns list of reviews in a dictionary list
-# curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/reviews
 class AllReviews(Resource):
+  # curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/reviews
   def get(self):
-    sql = "call getAllReviews()"
     try:
       cursor = db.cursor(MySQLdb.cursors.DictCursor)
-      cursor.execute(sql)
-      result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
-      return result
-    except Exception, msg:
-      return msg
+      cursor.callproc('getAllReviews')
 
-  # curl -i -H "Content-Type: application/json" -X POST -d '{"review":"this course sucks", "tough_rating": "5", "courseload_rating": "5", "usefulness_rating": "1", "exam_bool": true, "courseId": "STAT4293", "postedBy": "jmurray2"}' -b cookie-jar -k https://info3103.cs.unb.ca:39348/reviews
+      resp = Response( json.dumps(cursor.fetchall()), status=200, mimetype="application/json" )
+      return resp
+    except Exception, msg:
+      print msg
+      return make_response(jsonify({'status':'Bad request'}), 400)
+
+  # curl -i -H "Content-Type: application/json" -X POST -d '{"review":"i'm the man", "tough_rating": "5", "courseload_rating": "5", "usefulness_rating": "5", "exam_bool": false, "courseId": "MATH1013"}' -b cookie-jar -k https://info3103.cs.unb.ca:39348/reviews
   def post(self):
     if 'username' in session:
       try:
@@ -152,56 +139,68 @@ class AllReviews(Resource):
         usefulness_rating = request.json['usefulness_rating']
         exam_bool = request.json['exam_bool']
         courseId = request.json['courseId']
-        postedBy = request.json['postedBy']
+        postedBy = session['username']
 
-        sql_insert = "call postReview(%s,%s,%s,%s,%s,%s,%s)"
-        
-        data = (review, tough_rating, courseload_rating, usefulness_rating, exam_bool, courseId, postedBy)
-        cursor = db.cursor()
-        cursor.execute(sql_insert, data)
+        data = [review, tough_rating, courseload_rating, usefulness_rating, exam_bool, courseId, postedBy]
+      
+        cursor = db.cursor(MySQLdb.cursors.DictCursor)
+        cursor.callproc('postReview', data)
         db.commit()
-        #return?
+
+        response = {'status': 'Successfully posted'}
+        responseCode = 200
       except Exception, msg:
-        return msg
+        print msg
+        response = {'status': 'Bad request'}
+        responseCode = 400
     else:
-      response = {'status': 'unauthorized'}
+      response = {'status': 'Unauthorized'}
       responseCode = 401
-      return make_response(jsonify(response), responseCode)
+    
+    return make_response(jsonify(response), responseCode)
+
 
 class SpecificReviews(Resource):
-  def get(self):
+  # curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/reviews/{CS1073}
+  def get(self, courseID):
     try:
-      courseID = request.json['courseID']
-      sql = "call getSpecReviews(%s)"
-      data = (courseID)
       cursor = db.cursor(MySQLdb.cursors.DictCursor)
-      cursor.execute(sql,data)
-      result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
-      return result
+      cursor.callproc('getSpecReviews',[courseID])
+
+      resp = Response( json.dumps(cursor.fetchall()), status=200, mimetype="application/json" )
+      return resp
     except Exception, msg:
-      return msg
+      print msg
+      return make_response(jsonify({'status':'Bad request'}), 400)
 
 class ManipulateReviews(Resource):
-  def delete(self):
- 
-    try:
-      reviewID = request.json['id']
-      sql = "DELETE from reviews WHERE id = %s"
-      data = (reviewID)
-      cursor = db.cursor(MySQLdb.cursors.DictCursor)
-      cursor.execute(sql,data)
-      result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
-      return result
-    except Exception, msg:
-      return msg
+  #curl -i -H "Content-Type: application/json" -X DELETE -d '{"postedBy": "jmurray2"}' -b cookie-jar -k https://info3103.cs.unb.ca:39348/reviews/#
+  def delete(self, reviewID):
+    if 'username' in session:
+      postedBy = request.json['postedBy']
+      if session['username'] == postedBy:
+        try:
+          cursor = db.cursor(MySQLdb.cursors.DictCursor)
+          cursor.callproc('deleteReview', [reviewID])
+          db.commit()
+
+          resp = Response( json.dumps(cursor.fetchall()), status=200, mimetype="application/json" )
+          return resp
+        except Exception, msg:
+          print msg
+          return make_response(jsonify({'status':'Bad request'}), 400)
+      else: 
+        return make_response(jsonify({'status':'Unauthorized'}), 401)
+    else:
+      return make_response(jsonify({'status':'Unauthorized'}), 401)
+    
 
   #Works now, have to input all data when updating even if its the same
-  def put(self):
+  def put(self, reviewID):
     if 'username' in session:
       try:
         postedBy = request.json['postedBy']
-        if 'username' == postedBy:
-          reviewID = request.json['id']
+        if session['username'] == postedBy:
           review = request.json['review']
           tough_rating = request.json['tough_rating']
           courseload_rating = request.json['courseload_rating']
@@ -209,47 +208,44 @@ class ManipulateReviews(Resource):
           exam_bool = request.json['exam_bool']
           courseId = request.json['courseId']
 
-          sql_insert = "call updateReview(%s,%s,%s,%s,%s,%s,%s)"
-          data = (review,tough_rating,courseload_rating,usefulness_rating,exam_bool,courseId,reviewID)
+          data = [review,tough_rating,courseload_rating,usefulness_rating,exam_bool,courseId,reviewID]
+
           cursor = db.cursor(MySQLdb.cursors.DictCursor)
-          cursor.execute(sql_insert,data)
-          result = cursor.fetchall()
-          return result
+          cursor.callproc('updateReview', data)
+          db.commit()
+
+          resp = Response( json.dumps(cursor.fetchall()), status=200, mimetype="application/json" )
+          return resp
         else: 
-          response = {'status': 'unauthorized'}
-          responseCode = 401
+          return make_response(jsonify({'status':'Unauthorized'}), 401)
       except Exception, msg:
-        return msg
+        print msg
+        return make_response(jsonify({'status':'Bad request'}), 400)
     else:
-      response = {'status': 'unauthorized'}
-      responseCode = 401
-    
-    return make_response(jsonify(response), responseCode)
+      return make_response(jsonify({'status':'Unauthorized'}), 401)
 
       
-class SpecificCourseSubjects(Resource):
-  def get(self):
+class CourseSubjects(Resource):
+  def get(self, courseSubject):
     try:
-      subject = request.json['subject']
-      sql = "SELECT * FROM courses WHERE subject = %s"
-      data = (subject)
       cursor = db.cursor(MySQLdb.cursors.DictCursor)
-      cursor.execute(sql,data)
-      result = Response( json.dumps(cursor.fetchall()), mimetype="application/json" )
-      return result
+      cursor.callproc('getSpecCourses',[courseSubject])
+
+      resp = Response( json.dumps(cursor.fetchall()), status=200, mimetype="application/json" )
+      return resp
     except Exception, msg:
-      return msg
-  
+      print msg
+      return make_response(jsonify({'status':'Bad request'}), 400)
+
 
 # add url endpoints to api
 api = Api(app)
 api.add_resource(SignIn, '/signin')
 api.add_resource(AllCourses, '/courses')
+api.add_resource(CourseSubjects, '/courses/<string:courseSubject>')
 api.add_resource(AllReviews, '/reviews')
-api.add_resource(SpecificReviews, '/reviews/courseID')
-api.add_resource(SpecificCourseSubjects, '/courses/subject')
-api.add_resource(ManipulateReviews, '/reviews/reviewID')
-
+api.add_resource(SpecificReviews, '/reviews/<string:courseID>')
+api.add_resource(ManipulateReviews, '/reviews/<int:reviewID>')
 
 if __name__ == "__main__":
   context = ('cert.pem', 'key.pem')

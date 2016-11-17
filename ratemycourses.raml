@@ -1,0 +1,138 @@
+#%RAML 0.8
+#api-designer
+title: Rate My Courses
+baseUri: http://info3103.cs.unb.ca/jmurray2/ratemycourses/
+version: 0.1
+
+/signin:
+  get: 
+    description: Check usernames in session
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "uri": "/signin"
+                "messageContents": "{
+                  "username": "bob",
+                  }"
+              }
+  post:
+    description: Post usernames into session
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "uri": "signin"
+                "messageContents": "{
+                  "username": "bob",
+                  "password":"bobisawesome69"
+                  }"
+              }
+
+  delete:
+    description: Delete usernames in session
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "uri": "/signin"
+                "messageContents": "{
+                  "username": "bob",
+                }
+              }
+/courses:
+  get:
+    description: GET all courses
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "uri": "/{CourseSubject}/{CourseID}"
+                "messageContents": "CS1073: Introduction to Java I"
+              }
+  /subject:
+  get:
+    description: All courses for specific subject
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "uri": "/courses/<string:courseSubject>"
+                "messageContents": "CS1073, CS1111"
+              }
+/reviews:
+  get:
+    description: GET all reviews 
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "uri": "/reviews"
+                "timePosted": "2016-11-28T12:14:05+00:00"
+                "messageContents": "This course is awesome!"
+                "rating": "5"
+                "courseID": "CS1073"
+                "username": "jmurray2"
+              }
+      401: #not authorized
+  post:
+    description: Post a review 
+    responses:
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "uri": "/reviews"
+                "timePosted": "2016-11-28T12:14:05+00:00"
+                "messageContents": "This course is awesome!"
+                "rating": "5"
+                "courseID": "CS1073"
+                "username": "jmurray2"
+              }
+      401: #not authorized
+
+  /courseID:
+   get:
+    description: All selected CourseID reviews
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "uri": "/reviews/<string:courseID>"
+                "timePosted": "2016-11-28T12:14:05+00:00"
+                "messageContents": "This course is not so great!"
+                "rating": "5"
+                "reviewID": "101"
+              }
+  /reviewID:
+    put:
+      description: Update a specific review
+      responses:
+      200:
+        body:
+          application/json:
+      401: #not authorized
+    delete:
+      description: Delete a specific review
+      responses:
+      200:
+        body:
+          application/json:
+      401: #not authorized
+
+
