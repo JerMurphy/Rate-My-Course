@@ -1,10 +1,198 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-	  <meta charset="utf-8">
-	  <title>Rate my course</title>
-	</head>
-	<body>
-	  <p>Hello World!</p>
-	</body>
+<head>
+  <title>Rate My Course</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+  </style>
+</head>
+<body>
+
+ 
+  
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-4 sidenav">
+      <div class="panel-group" id="accordion" ng-app ="" align = "center" >
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+        CS - Computer Science</a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse" ng-controller = "getCS" >
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat = "course in courses">
+            {{course.id}} - {{course.name}}
+          </li>
+        </ul></div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+        INFO - Information Systems</a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse" ng-controller = "getINFO">
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat = "course in courses">
+            {{course.id}} - {{course.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+        MATH - Mathematics</a>
+      </h4>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse" ng-controller = "getMATH" >
+      <div class="panel-body"><ul class="list-group">
+          <li class="list-group-item" ng-repeat = "course in courses">
+            {{course.id}} - {{course.name}}
+          </li>
+        </ul>
+        </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" >
+        STATS - Statistics</a>
+      </h4>
+    </div>
+    <div id="collapse4" class="panel-collapse collapse" ng-controller = "getSTAT">
+      <div class="panel-body"><ul class="list-group">
+          <li class="list-group-item" ng-repeat = "course in courses">
+            {{course.id}} - {{course.name}}
+          </li>
+        </ul></div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+        MAAC - Media Arts and Culture</a>
+      </h4>
+    </div>
+    <div id="collapse5" class="panel-collapse collapse" ng-controller = "getMAAC">
+      <div class="panel-body"><ul class="list-group">
+          <li class="list-group-item" ng-repeat = "course in courses">
+           <a href=""> {{course.id}} - {{course.name}} </a>
+          </li> 
+        </ul></div>
+    </div>
+  </div>
+  <script>
+  function getCS($scope,$http) {
+    var url = "https://info3103.cs.unb.ca:39348/courses/CS";
+
+   $http.get(url).success( function(response) {
+      $scope.courses = response;
+
+
+   });
+}
+ function getINFO($scope,$http) {
+    var url = "https://info3103.cs.unb.ca:39348/courses/INFO";
+
+   $http.get(url).success( function(response) {
+      $scope.courses = response;
+
+
+   });
+}
+function getMATH($scope,$http) {
+    var url = "https://info3103.cs.unb.ca:39348/courses/MATH";
+
+   $http.get(url).success( function(response) {
+      $scope.courses = response;
+
+
+   });
+}
+function getSTAT($scope,$http) {
+    var url = "https://info3103.cs.unb.ca:39348/courses/STAT";
+
+   $http.get(url).success( function(response) {
+      $scope.courses = response;
+
+
+   });
+}
+function getMAAC($scope,$http) {
+  var url = "https://info3103.cs.unb.ca:39348/courses/MAAC";
+
+  $http.get(url).success( function(response) {
+    $scope.courses = response;
+  });
+}
+
+</script>
+</div>
+    </div>
+    <div class="col-sm-8 text-left" ng-controller="getReviews">
+      <h1>Welcome</h1>
+      <p>This is a service from students for students. You may read through the reviews on various courses to see if they are a fit for your lifestyle. Please no foul language when leaving reviews.</p>
+      <hr>
+      <div>
+        <h3>Reviews for CS1073</h3>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat = "review in reviews">
+            {{review.postedBy}} - {{review.review}}
+          </li>
+        </ul> 
+      </div>
+    </div>
+  </div>
+</div>
+</body>
 </html>
+
