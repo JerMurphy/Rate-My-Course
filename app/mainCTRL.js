@@ -6,8 +6,13 @@ function mainCTRL($scope,$http) {
     $http.post('https://info3103.cs.unb.ca:39348/signin', credentials).then(function(data) {
       // Success here means the transmission was successful - not necessarily the login.
       // The data.status determines login success
+      $scope.message = ""
       if(data.status == 201) {
         //you're in!!
+        $scope.message = "Login Successful"
+      }
+      else{
+        $scope.message = "Login Unsucessful"
       }
     });
   }
