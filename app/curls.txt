@@ -17,7 +17,7 @@ curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca
 curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/reviews
 
 /reviews POST
-curl -i -H "Content-Type: application/json" -X POST -d '{"review":"awesome course", "tough_rating": "5", "courseload_rating": "5", "usefulness_rating": "1", "exam_bool": true, "courseId": "INFO3103"}' -b cookie-jar -k https://info3103.cs.unb.ca:43327/reviews
+curl -i -H "Content-Type: application/json" -X POST -d '{"review":"awesome course", "tough_rating": "5", "courseload_rating": "5", "usefulness_rating": "1", "exam_bool": true, "courseId": "INFO3103"}' -b cookie-jar -k https://info3103.cs.unb.ca:39348/reviews
 
 /reviews/CS1073
 curl -i -H "Content-Type: application/json" -X GET -k https://info3103.cs.unb.ca:39348/reviews/CS1073

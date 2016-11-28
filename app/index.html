@@ -17,21 +17,11 @@
       border-radius: 0;
     }
     
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
       background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
+      height: auto;
     }
     
     /* On small screens, set height to 'auto' for sidenav and grid */
@@ -40,135 +30,163 @@
         height: auto;
         padding: 15px;
       }
-      .row.content {height:auto;}
     }
   </style>
 </head>
 <body ng-controller = "mainCTRL">
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
       <a class="navbar-brand" href="#">Rate My Course</a>
     </div>
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search for a class...">
+      </div>
+    </form>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login<span class="caret"></span></a>
+          <ul id="login-dp" class="dropdown-menu">
+            <li>
+              <div class="row">
+                <div class="col-md-12">
+                  <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                    <div class="form-group">
+                      <label class="sr-only" for="unb_email">Email address</label>
+                      <input class="form-control" id="unb_email" placeholder="UNB Username" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="unb_password">Password</label>
+                      <input type="password" class="form-control" id="unb_password" placeholder="UNB Password" required>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary">Sign in</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
-  
+
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-4 sidenav">
       <div class="panel-group" id="accordion" ng-app ="" align = "center" >
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" ng-click = "getCS()" href="#collapse1">
-        CS - Computer Science</a>
-      </h4>
-    </div>
-    <div id="collapse1" class="panel-collapse collapse" >
-      <div class="panel-body">
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat = "course in courses">
-            <a ng-click="getReviews(course.id)">{{course.id}} - {{course.name}}</a>
-          </li>
-        </ul></div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" ng-click="getINFO()" href="#collapse2">
-        INFO - Information Systems</a>
-      </h4>
-    </div>
-    <div id="collapse2" class="panel-collapse collapse" >
-      <div class="panel-body">
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat = "course in courses">
-             <a ng-click="getReviews(course.id)">{{course.id}} - {{course.name}}</a>
-          </li>
-        </ul>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" ng-click = "getCS()" href="#collapse1">
+                CS - Computer Science
+              </a>
+            </h4>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item" ng-repeat = "course in courses">
+                  <a ng-click="getReviews(course.id)">{{course.id}} - {{course.name}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" ng-click="getINFO()" href="#collapse2">
+                INFO - Information Systems
+              </a>
+            </h4>
+          </div>
+          <div id="collapse2" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item" ng-repeat = "course in courses">
+                   <a ng-click="getReviews(course.id)">{{course.id}} - {{course.name}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" ng-click="getMATH()" href="#collapse3">
+                MATH - Mathematics
+              </a>
+            </h4>
+          </div>
+          <div id="collapse3" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item" ng-repeat = "course in courses">
+                   <a ng-click="getReviews(course.id)">{{course.id}} - {{course.name}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" ng-click="getSTAT()" href="#collapse4">
+                STAT - Statistics
+              </a>
+            </h4>
+          </div>
+          <div id="collapse4" class="panel-collapse collapse" >
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item" ng-repeat = "course in courses">
+                   <a ng-click="getReviews(course.id)">{{course.id}} - {{course.name}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" ng-click="getMAAC()" href="#collapse5">
+                MAAC - Media Arts and Culture
+              </a>
+            </h4>
+          </div>
+          <div id="collapse5" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item" ng-repeat = "course in courses">
+                   <a ng-click="getReviews(course.id)">{{course.id}} - {{course.name}}</a>
+                </li> 
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" ng-click="getMATH()" href="#collapse3">
-        MATH - Mathematics</a>
-      </h4>
-    </div>
-    <div id="collapse3" class="panel-collapse collapse" >
-      <div class="panel-body"><ul class="list-group">
-          <li class="list-group-item" ng-repeat = "course in courses">
-             <a ng-click="getReviews(course.id)">{{course.id}} - {{course.name}}</a>
-          </li>
-        </ul>
-        </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" ng-click="getSTAT()" href="#collapse4" >
-        STATS - Statistics</a>
-      </h4>
-    </div>
-    <div id="collapse4" class="panel-collapse collapse" >
-      <div class="panel-body"><ul class="list-group">
-          <li class="list-group-item" ng-repeat = "course in courses">
-             <a ng-click="getReviews(course.id)">{{course.id}} - {{course.name}}</a>
-          </li>
-        </ul></div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" ng-click="getMAAC()" href="#collapse5">
-        MAAC - Media Arts and Culture</a>
-      </h4>
-    </div>
-    <div id="collapse5" class="panel-collapse collapse">
-      <div class="panel-body"><ul class="list-group">
-          <li class="list-group-item" ng-repeat = "course in courses">
-             <a ng-click="getReviews(course.id)">{{course.id}} - {{course.name}}</a>
-          </li> 
-        </ul></div>
-    </div>
-  </div>
-</div>
-    </div>
-    <div class="col-sm-8 text-left" ng-app="" >
+    <div class="col-sm-8 text-left" ng-app="">
       <h1>Welcome</h1>
-      <p>This is a service from students for students. You may read through the reviews on various courses to see if they are a fit for your lifestyle. Please no foul language when leaving reviews.</p>
+      <p>This is a service from students for students. You may read through the reviews on various courses to see if they are a fit for your lifestyle. Please no fucking swearing when leaving reviews.</p>
       <hr>
-       <h3>Reviews</h3>
-        <div > 
-          <div class="panel-body"><ul class="list-group">
+      <h3>Reviews</h3>
+      <div> 
+        <div class="panel-body">
+          <ul class="list-group">
             <li class="list-group-item" ng-repeat = "review in reviews">
-             {{review.postedBy}} - {{review.review}} 
-           </li> 
-          </ul></div>
+              {{review.postedBy}} - {{review.review}} 
+            </li> 
+          </ul>
         </div>
+      </div>
     </div>
   </div>
 </div>
 </body>
 </html>
-
