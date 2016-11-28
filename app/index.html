@@ -46,30 +46,35 @@
     </form>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
+        <!-- not logged in -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login<span class="caret"></span></a>
           <ul id="login-dp" class="dropdown-menu">
             <li>
               <div class="row">
                 <div class="col-md-12">
-                  <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                    <div class="form-group">
-                      <label class="sr-only" for="unb_email">Email address</label>
-                      <input class="form-control" id="unb_email" placeholder="UNB Username" required>
+                  <form id="loginForm" >
+                    <!-- NAME -->
+                    <div id="username-group" class="form-group">
+                      <input type="text" class="form-control" id="username" name="username" placeholder="UNB Username" required ng-model="user.username">
                     </div>
-                    <div class="form-group">
-                      <label class="sr-only" for="unb_password">Password</label>
-                      <input type="password" class="form-control" id="unb_password" placeholder="UNB Password" required>
+
+                    <!-- PASSWORD -->
+                    <div id="password-group" class="form-group">
+                      <input type="password" class="form-control" id="password" name="password" placeholder="UNB Password" required ng-model="user.password">
                     </div>
-                    <div class="form-group">
-                      <button type="submit" class="btn btn-primary">Sign in</button>
-                    </div>
+
+                    <button type="button" class="btn btn-primary" ng-click="logIn(user)">Log In</button>
+                    <p>{{message}}</p>
                   </form>
                 </div>
               </div>
             </li>
           </ul>
         </li>
+
+        <!-- user logged in -->
+        
       </ul>
     </div>
   </div>

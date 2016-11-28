@@ -1,5 +1,17 @@
 function mainCTRL($scope,$http) {
-   
+  //log user in
+  $scope.logIn = function(user){
+    credentials = JSON.stringify({"username": user.username, "password": user.password});
+    // Submit the credentials
+    $http.post('https://info3103.cs.unb.ca:39348/signin', credentials).then(function(data) {
+      // Success here means the transmission was successful - not necessarily the login.
+      // The data.status determines login success
+      if(data.status == 201) {
+        //you're in!!
+      }
+    });
+  }
+
   //list the reviews
   $scope.getReviews = function(id) {
  		var url = "https://info3103.cs.unb.ca:39348/reviews/" + id;
@@ -8,6 +20,7 @@ function mainCTRL($scope,$http) {
 		  $scope.reviews = response;
 		});
   }
+
   //get the CS courses
   $scope.getCS = function() {
   	var url = "https://info3103.cs.unb.ca:39348/courses/CS";
