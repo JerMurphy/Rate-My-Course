@@ -3,17 +3,20 @@ import sys
 from flask import Flask, jsonify, abort, request, make_response, session, Response
 from flask_restful import reqparse, Resource, Api
 from flask_session import Session
+from flask.ext.cors import CORS
 import json
 import MySQLdb
 import ldap
 import ssl
 import settings # Our server and db settings, stored in settings.py
 
+app = Flask(__name__,static_url_path="")
+CORS(app)
 # force std to use utf-8
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-app = Flask(__name__)
+
 db = MySQLdb.connect(host=settings.MYSQL_HOST,user=settings.MYSQL_USER,passwd=settings.MYSQL_PASSWD,db=settings.MYSQL_DB)
 # Set Server-side session config: Save sessions in the local app directory.
 app.secret_key = settings.SECRET_KEY
