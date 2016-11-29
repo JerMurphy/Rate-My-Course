@@ -1,0 +1,106 @@
+function mainCTRL($scope,$http) {
+  var session = {};
+  $scope.session = session
+  session['exists'] = false //call ng-if="getLogin()" instead?? (more secure)
+  session['username'] = null
+
+  //login user
+  $scope.login = function(user) {
+    var url = 'https://info3103.cs.unb.ca:39348/signin'
+    credentials = JSON.stringify({"username": user.username, "password": user.password});
+
+    $http({ method: 'POST', url: url, data: credentials }).then(
+      function(response) { //success
+        if (response.status == 201) {
+          $scope.message = null
+          session['exists'] = true
+          session['username'] = response.data.username
+        }
+      }, 
+      function(response) { //error
+        $scope.message = "Login Failed"
+      }
+    );
+  }
+
+  //logout user
+  $scope.logout = function() {
+    var url = 'https://info3103.cs.unb.ca:39348/signin'
+
+    $http({ method: 'DELETE', url: url }).then(
+      function(response) { //success
+        if (response.status == 200) {
+          session['working'] = true
+        }
+      }, 
+      function(response) { //error
+        session['exists'] = false //TEMPORARILY HERE - to be moved to success response
+        session['username'] = null //TEMPORARILY HERE - to be moved to success response
+      }
+    );
+  }
+
+  //check for session
+  $scope.getLogin = function() {
+    var url = "https://info3103.cs.unb.ca:39348/signin";
+
+    $http.get(url).success( function(response) { //success
+      session['exists'] = true
+      session['username'] = response.data.username
+    },
+    function(response) { //error
+      session['exists'] = false
+      session['username'] = null
+    });
+  }
+
+  //list the reviews
+  $scope.getReviews = function(id) {
+ 		var url = "https://info3103.cs.unb.ca:39348/reviews/" + id;
+
+		$http.get(url).success( function(response) {
+		  $scope.reviews = response;
+		});
+  }
+
+  //get the CS courses
+  $scope.getCS = function() {
+  	var url = "https://info3103.cs.unb.ca:39348/courses/CS";
+
+ 		$http.get(url).success( function(response) {
+    	$scope.courses = response;
+ 		});
+	}
+	//get the INFO courses
+	$scope.getINFO = function() {
+  	var url = "https://info3103.cs.unb.ca:39348/courses/INFO";
+
+ 		$http.get(url).success( function(response) {
+    	$scope.courses = response;
+ 		});
+	}
+	//get the MATH courses
+	$scope.getMATH = function() {
+  	var url = "https://info3103.cs.unb.ca:39348/courses/MATH";
+
+ 		$http.get(url).success( function(response) {
+    	$scope.courses = response;
+ 		});
+	}
+	//get the STAT courses
+	$scope.getSTAT = function() {
+  	var url = "https://info3103.cs.unb.ca:39348/courses/STAT";
+
+ 		$http.get(url).success( function(response) {
+    	$scope.courses = response;
+ 		});
+	}
+	//get the MAAC courses
+	$scope.getMAAC = function() {
+  	var url = "https://info3103.cs.unb.ca:39348/courses/MAAC";
+
+ 		$http.get(url).success( function(response) {
+    	$scope.courses = response;
+ 		});
+	}
+}
