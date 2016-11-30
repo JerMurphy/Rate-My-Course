@@ -36,6 +36,9 @@ def not_found(error):
 def not_found(error):
   return make_response(jsonify({'status': 'Resource not found'}), 404)
 
+class Homepage(Resource):
+  def get(self):
+    return app.send_static_file('index.html')
 
 class SignIn(Resource):
   # POST: Set Session and return Cookie
@@ -70,7 +73,7 @@ class SignIn(Resource):
         responseCode = 201
       except ldap.LDAPError, error_message:
         response = {'status': 'access denied'}
-        responseCode = 403
+        responseCode = 401
       finally:
         l.unbind()
     
@@ -85,7 +88,7 @@ class SignIn(Resource):
       responseCode = 200
     else:
       response = {'status': 'no session found'}
-      responseCode = 403
+      responseCode = 404
 
     return make_response(jsonify(response), responseCode)
   
@@ -98,7 +101,7 @@ class SignIn(Resource):
       session.clear() #clear current session
     else:
       response = {'status': 'no session found'}
-      responseCode = 403
+      responseCode = 404
 
     return make_response(jsonify(response), responseCode)
     
@@ -246,6 +249,7 @@ class ManipulateReviews(Resource):
 
 # add url endpoints to api
 api = Api(app)
+api.add_resource(Homepage, '/')
 api.add_resource(SignIn, '/signin')
 api.add_resource(AllCourses, '/courses')
 api.add_resource(CourseSubjects, '/courses/<string:courseSubject>')
