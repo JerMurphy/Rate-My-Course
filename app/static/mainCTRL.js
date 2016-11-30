@@ -42,7 +42,7 @@ function mainCTRL($scope,$http) {
 
   //check for session
   $scope.getLogin = function() {
-    var url = "https://info3103.cs.unb.ca:39348/signin";
+    var url = 'https://info3103.cs.unb.ca:39348/signin';
 
     $http.get(url).success( function(response) { //success
       session['exists'] = true
@@ -52,6 +52,34 @@ function mainCTRL($scope,$http) {
       session['exists'] = false
       session['username'] = null
     });
+  }
+
+  //post a review
+  $scope.postReview = function(args) {
+    var url = 'https://info3103.cs.unb.ca:39348/reviews';
+    data = JSON.stringify('review': args.review, 
+                          'tough_rating': args.tough_rating, 
+                          'courseload_rating': args.courseload_rating, 
+                          'usefulness_rating': args.usefulness_rating, 
+                          'exam_bool': args.exam_bool, 
+                          'courseId': args.courseId, 
+                          'postedBy': args.postedBy);
+
+    $http({ method: 'POST', url: url, data: data }).then(
+      function(response) { //success
+        if (response.status == 201) {
+          //successfully posted
+          continue
+
+        }
+      },
+      function(response) { //error
+        if (response.status == 401) {
+          //access denied
+          // Put success code here until I get login sessions working:
+
+        }
+      });
   }
 
   //list the reviews
