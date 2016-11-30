@@ -76,7 +76,6 @@ function mainCTRL($scope,$http) {
       function(response) { //error
         if (response.status == 401) {
           //access denied
-          // Put success code here until I get login sessions working:
 
         }
       });
