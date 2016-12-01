@@ -43,11 +43,14 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Rate My Course</a>
     </div>
-    <form class="navbar-form navbar-left" role="search">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search for a class...">
-      </div>
+    <!-- SEARCH BAR -->
+    <form class="navbar-form navbar-left">
+      <input list="dlist" ng-model="search_input" ng-change="getReviews(search_input)" type="text" class="form-control" placeholder="Search for a class..." ng-keyup="search($event, search_input)">
+      <datalist id="dlist">
+        <option ng-repeat="course in search_results | limitTo:10" value="{{course}}">
+      </datalist>
     </form>
+
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <!-- not logged in -->

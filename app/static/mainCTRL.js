@@ -54,32 +54,51 @@ function mainCTRL($scope,$http) {
     });
   }
 
-  //post a review
-  $scope.postReview = function(args) {
-    var url = 'https://info3103.cs.unb.ca:39348/reviews';
-    data = JSON.stringify('review': args.review, 
-                          'tough_rating': args.tough_rating, 
-                          'courseload_rating': args.courseload_rating, 
-                          'usefulness_rating': args.usefulness_rating, 
-                          'exam_bool': args.exam_bool, 
-                          'courseId': args.courseId, 
-                          'postedBy': args.postedBy);
+  $scope.search = function(e, input) {
+    var url = 'https://info3103.cs.unb.ca:39348/courses'; //get all reviews
+    var charCode = (e.which) ? e.which : e.keyCode //not used
+    var results = [] //array of courses
 
-    $http({ method: 'POST', url: url, data: data }).then(
-      function(response) { //success
-        if (response.status == 201) {
-          //successfully posted
+    $http.get(url).success( function(response) { //success
+      var course;
+      for (course in response) {
+        if (input == "")
           continue
-
-        }
-      },
-      function(response) { //error
-        if (response.status == 401) {
-          //access denied
-
-        }
-      });
+        else if (input == (response[course].id).substring(0,input.length))
+          results.push(response[course].id)
+        else if (input == (response[course].num).substring(0,input.length))
+          results.push(response[course].id)
+      }
+      $scope.search_results = results;
+    })
   }
+
+  //post a review
+  // $scope.postReview = function(args) {
+  //   var url = 'https://info3103.cs.unb.ca:39348/reviews';
+  //   data = JSON.stringify('review': args.review, 
+  //                         'tough_rating': args.tough_rating, 
+  //                         'courseload_rating': args.courseload_rating, 
+  //                         'usefulness_rating': args.usefulness_rating, 
+  //                         'exam_bool': args.exam_bool, 
+  //                         'courseId': args.courseId, 
+  //                         'postedBy': args.postedBy);
+
+  //   $http({ method: 'POST', url: url, data: data }).then(
+  //     function(response) { //success
+  //       if (response.status == 201) {
+  //         //successfully posted
+  //         continue
+
+  //       }
+  //     },
+  //     function(response) { //error
+  //       if (response.status == 401) {
+  //         //access denied
+
+  //       }
+  //     });
+  // }
 
   //list the reviews
   $scope.getReviews = function(id) {
