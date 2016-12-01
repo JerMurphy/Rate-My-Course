@@ -58,6 +58,7 @@ function mainCTRL($scope,$http) {
     var url = 'https://info3103.cs.unb.ca:39348/courses'; //get all reviews
     var charCode = (e.which) ? e.which : e.keyCode //not used
     var results = [] //array of courses
+    input = input.toUpperCase()
 
     $http.get(url).success( function(response) { //success
       var course;
