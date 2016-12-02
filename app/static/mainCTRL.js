@@ -67,40 +67,78 @@ function mainCTRL($scope,$http) {
     })
   }
 
-  //post a review
-  // $scope.postReview = function(args) {
-  //   var url = 'https://info3103.cs.unb.ca:39348/reviews';
-  //   data = JSON.stringify('review': args.review, 
-  //                         'tough_rating': args.tough_rating, 
-  //                         'courseload_rating': args.courseload_rating, 
-  //                         'usefulness_rating': args.usefulness_rating, 
-  //                         'exam_bool': args.exam_bool, 
-  //                         'courseId': args.courseId, 
-  //                         'postedBy': args.postedBy);
+ // post a review
+   $scope.postReview = function() {
+     var url = 'https://info3103.cs.unb.ca:39348/reviews';
+     var dat = {
+        postedBy: "jmurphy1",
+        review: $('#review').val(),
+        tough_rating:$('#tough').val(),
+        courseload_rating: $('#courseload').val(),
+        usefulness_rating: $('#use').val(),
+        courseId: $('#courseid').val(),
+        exam_bool: $('#exam').val()
+     }
+     var data = JSON.stringify(dat);
+     console.log(data); 
 
-  //   $http({ method: 'POST', url: url, data: data }).then(
-  //     function(response) { //success
-  //       if (response.status == 201) {
-  //         //successfully posted
-  //         continue
+     $http({ method: 'POST', url: url, data: data }).then(
+       function(response) { //success
+         if (response.status == 201) {
+           //successfully posted
+           
 
-  //       }
-  //     },
-  //     function(response) { //error
-  //       if (response.status == 401) {
-  //         //access denied
+         }
+       },
+       function(response) { //error
+         if (response.status == 401) {
+           //access denied
 
-  //       }
-  //     });
-  // }
+         }
+       });
+   }
 
   //list the reviews
   $scope.getReviews = function(id) {
- 		var url = "https://info3103.cs.unb.ca:39348/reviews/" + id;
+    var url = "https://info3103.cs.unb.ca:39348/reviews/" + id;
 
-		$http.get(url).success( function(response) {
-		  $scope.reviews = response;
-		});
+    $http.get(url).success( function(response) {
+      $scope.reviews = response;
+      for (review in $scope.reviews){
+        var avg = Math.ceil((scaleAvg($scope.reviews[review].courseload_rating) + scaleAvg($scope.reviews[review].tough_rating) + $scope.reviews[review].usefulness_rating)/3)
+        console.log(avg)
+        if( avg > 3)
+          $scope.reviews[review].panel = "panel panel-success"
+        if(avg < 3)
+          $scope.reviews[review].panel = "panel panel-danger"
+        if(avg == 3)
+          $scope.reviews[review].panel = "panel panel-warning"
+        if($scope.reviews[review].exam_bool == 1)
+          $scope.reviews[review].exam = "Yes"
+        if($scope.reviews[review].exam_bool == 0)
+          $scope.reviews[review].exam = "No"
+      }
+    });
+    
+  }
+
+  function scaleAvg(num){
+      console.log(num)
+      if(num == 1){
+        return 5
+      }
+      if(num==2){
+        return 4
+      }
+      if(num==3){
+        return 3
+      }
+      if(num==4){
+        return 2
+      }
+      if(num==5){
+        return 1
+      }
   }
 
   //get the CS courses

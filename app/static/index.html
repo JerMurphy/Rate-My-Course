@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+y<!DOCTYPE html>
 <html lang="en" ng-app>
 <head>
   <title>Rate My Course</title>
@@ -186,16 +186,117 @@
     </div>
     <div class="col-sm-8 text-left" ng-app="">
       <h1>Welcome</h1>
-      <p>This is a service from students for students. You may read through the reviews on various courses to see if they are a fit for your lifestyle. Please no fucking swearing when leaving reviews.</p>
+      <p>This is a service from students for students. You may read through the reviews on various courses to see if they are a fit for your lifestyle. Please no foul languge when leaving reviews.</p>
       <hr>
-      <h3>Reviews</h3>
+      <button type="button" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">Create a Review</button>
+      <div>
+        <h3>Reviews</h3>
+        
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">Your opinion matters! </h4>
+      </div>
+      <div class="modal-body">
+       
+        <h3>Post a Review:</h3>
+        <form id="postForm">
+          <table cellpadding="8px">
+              <tr>
+                  <td> Course ID: </td>
+                  <td><input type="text" require size="8" name="courseID" id="courseid"></td>
+              </tr>
+              <tr>
+                  <td>Toughness Rating: </td>
+                  <td>
+                    <select id="tough" name="tough_rating">
+                      <option value="1"> 1 </option>
+                      <option value="2"> 2 </option>
+                      <option value="3"> 3 </option>
+                      <option value="4"> 4 </option>
+                      <option value="5"> 5 </option>
+                    </select>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Usefulness Rating: </td>
+                  <td>
+                    <select id="use" name="use_rating">
+                      <option value="1"> 1 </option>
+                      <option value="2"> 2 </option>
+                      <option value="3"> 3 </option>
+                      <option value="4"> 4 </option>
+                      <option value="5"> 5 </option>
+                    </select>
+                  </td>
+              </tr>
+              <tr>
+                  <td>Courseload Rating: </td>
+                  <td>
+                    <select id="courseload" name="courseload_rating">
+                      <option value="1"> 1 </option>
+                      <option value="2"> 2 </option>
+                      <option value="3"> 3 </option>
+                      <option value="4"> 4 </option>
+                      <option value="5"> 5 </option>
+                    </select>
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                  Exam: 
+                </td>
+                <td>
+                  <input type="radio" name="exam" id="exam" value="true"> Yes<br>
+                 <input type="radio" name="exam" id="exam" value="false"> No<br>
+                <td>
+              <tr>
+                <td> Review </td>
+                <td>
+                  <textarea id="review" row="4" cols ="50" ></textarea>
+          </table>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="postReview()">Create Review</button>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
       <div> 
         <div class="panel-body">
-          <ul class="list-group">
-            <li class="list-group-item" ng-repeat = "review in reviews">
-              {{review.postedBy}} - {{review.review}} 
-            </li> 
-          </ul>
+              <div class="row-lg-3 row-md-6" ng-repeat = "review in reviews">
+                <div class="{{review.panel}}">
+                  <div class="panel-heading">
+                    <div class="row">
+                      <div class="col-xs-3 text-left">
+                        <h1 class="huge">{{review.courseload_rating}}</h1>
+                        <h6>Courseload Rating</h6>
+                      </div>
+                      <div class="col-xs-3 text-center">
+                        <h1 class="huge">{{review.usefulness_rating}}</h1>
+                          <h6>Usefulness Rating</h6>
+                      </div>
+                      <div class="col-xs-3 text-right">
+                        <h1 class="huge">{{review.tough_rating}}</h1>
+                        <h6>Toughness Rating</h6>
+                      </div>
+                      <div class="col-xs-3 text-right">
+                        <h1 class="huge">{{review.exam}}</h1>
+                          <h6>Exam</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-footer">
+                    <span class="pull-left">{{review.review}}</span>
+                    <div class="clearfix"></div>
+                  </div>   
+                </div>
+              </div>
         </div>
       </div>
     </div>
