@@ -71,7 +71,7 @@ function mainCTRL($scope,$http) {
    $scope.postReview = function() {
      var url = 'https://info3103.cs.unb.ca:39348/reviews';
      var dat = {
-        postedBy: "jmurphy1",
+        postedBy: session['username'],
         review: $('#review').val(),
         tough_rating:$('#tough').val(),
         courseload_rating: $('#courseload').val(),
