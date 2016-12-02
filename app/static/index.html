@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+y<!DOCTYPE html>
 <html lang="en" ng-app>
 <head>
   <title>Rate My Course</title>
@@ -212,7 +212,7 @@
               <tr>
                   <td>Toughness Rating: </td>
                   <td>
-                    <select name="tough_rating">
+                    <select id="tough" name="tough_rating">
                       <option value="1"> 1 </option>
                       <option value="2"> 2 </option>
                       <option value="3"> 3 </option>
@@ -224,7 +224,7 @@
               <tr>
                   <td>Usefulness Rating: </td>
                   <td>
-                    <select name="use_rating">
+                    <select id="use" name="use_rating">
                       <option value="1"> 1 </option>
                       <option value="2"> 2 </option>
                       <option value="3"> 3 </option>
@@ -236,7 +236,7 @@
               <tr>
                   <td>Courseload Rating: </td>
                   <td>
-                    <select name="tough_rating">
+                    <select id="courseload" name="courseload_rating">
                       <option value="1"> 1 </option>
                       <option value="2"> 2 </option>
                       <option value="3"> 3 </option>
@@ -246,15 +246,23 @@
                   </td>
               </tr>
               <tr>
+                <td>
+                  Exam: 
+                </td>
+                <td>
+                  <input type="radio" name="exam" id="exam" value="true"> Yes<br>
+                 <input type="radio" name="exam" id="exam" value="false"> No<br>
+                <td>
+              <tr>
                 <td> Review </td>
                 <td>
-                  <textarea row="4" cols ="50" ></textarea>
+                  <textarea id="review" row="4" cols ="50" ></textarea>
           </table>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Create Review</button>
+        <button type="button" class="btn btn-primary" ng-click="postReview()">Create Review</button>
       </div>
     </div>
   </div>
