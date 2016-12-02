@@ -30,12 +30,9 @@ function mainCTRL($scope,$http) {
     $http({ method: 'DELETE', url: url }).then(
       function(response) { //success
         if (response.status == 200) {
-          session['working'] = true
+          session['exists'] = false //TEMPORARILY HERE - to be moved to success response
+          session['username'] = null //TEMPORARILY HERE - to be moved to success response
         }
-      }, 
-      function(response) { //error
-        session['exists'] = false //TEMPORARILY HERE - to be moved to success response
-        session['username'] = null //TEMPORARILY HERE - to be moved to success response
       }
     );
   }
@@ -47,10 +44,6 @@ function mainCTRL($scope,$http) {
     $http.get(url).success( function(response) { //success
       session['exists'] = true
       session['username'] = response.data.username
-    },
-    function(response) { //error
-      session['exists'] = false
-      session['username'] = null
     });
   }
 
