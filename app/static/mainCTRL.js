@@ -16,7 +16,7 @@ function mainCTRL($scope,$http) {
           session['exists'] = true
           session['username'] = response.data.username
         }
-      }, 
+      },
       function(response) { //error
         $scope.message = "Login Failed"
       }
@@ -30,12 +30,9 @@ function mainCTRL($scope,$http) {
     $http({ method: 'DELETE', url: url }).then(
       function(response) { //success
         if (response.status == 200) {
-          session['working'] = true
+          session['exists'] = false
+          session['username'] = null
         }
-      }, 
-      function(response) { //error
-        session['exists'] = false //TEMPORARILY HERE - to be moved to success response
-        session['username'] = null //TEMPORARILY HERE - to be moved to success response
       }
     );
   }
@@ -48,16 +45,16 @@ function mainCTRL($scope,$http) {
       session['exists'] = true
       session['username'] = response.data.username
     },
-    function(response) { //error
-      session['exists'] = false
-      session['username'] = null
-    });
+      function(response) {
+        session['exists'] = false
+        session['username'] = null
+      });
   }
 
   $scope.search = function(e, input) {
     var url = 'https://info3103.cs.unb.ca:39348/courses'; //get all reviews
     var charCode = (e.which) ? e.which : e.keyCode //not used
-    var results = [] //array of courses
+    var results = [] //array of coursesparseInt(reviews[review].avg)
     input = input.toUpperCase()
 
     $http.get(url).success( function(response) { //success
@@ -74,40 +71,104 @@ function mainCTRL($scope,$http) {
     })
   }
 
-  //post a review
-  // $scope.postReview = function(args) {
-  //   var url = 'https://info3103.cs.unb.ca:39348/reviews';
-  //   data = JSON.stringify('review': args.review, 
-  //                         'tough_rating': args.tough_rating, 
-  //                         'courseload_rating': args.courseload_rating, 
-  //                         'usefulness_rating': args.usefulness_rating, 
-  //                         'exam_bool': args.exam_bool, 
-  //                         'courseId': args.courseId, 
-  //                         'postedBy': args.postedBy);
+ // post a review
+   $scope.postReview = function() {
+     var url = 'https://info3103.cs.unb.ca:39348/reviews';
+     var dat = {
+        postedBy: session['username'],
+        review: $('#review').val(),
+        tough_rating:$('#tough').val(),
+        courseload_rating: $('#courseload').val(),
+        usefulness_rating: $('#use').val(),
+        courseId: $('#courseid').val(),
+        exam_bool: $('#exam').val()
+     }
+     var data = JSON.stringify(dat);
+     console.log(data);
 
-  //   $http({ method: 'POST', url: url, data: data }).then(
-  //     function(response) { //success
-  //       if (response.status == 201) {
-  //         //successfully posted
-  //         continue
-
-  //       }
-  //     },
-  //     function(response) { //error
-  //       if (response.status == 401) {
-  //         //access denied
-
-  //       }
-  //     });
-  // }
+     $http({ method: 'POST', url: url, data: data }).then(
+       function(response) { //success
+         if (response.status == 201) {}
+       },
+       function(response) { //error
+         if (response.status == 401) {}
+       });
+   }
 
   //list the reviews
   $scope.getReviews = function(id) {
- 		var url = "https://info3103.cs.unb.ca:39348/reviews/" + id;
+    var url = "https://info3103.cs.unb.ca:39348/reviews/" + id;
 
-		$http.get(url).success( function(response) {
-		  $scope.reviews = response;
-		});
+    $http.get(url).success( function(response) {
+      reviews = response
+      $scope.reviews = reviews
+      //console.log(reviews)
+      for (review in reviews){
+        reviews[review].avg = ((scaleAvg(reviews[review].courseload_rating) + scaleAvg(reviews[review].tough_rating) + reviews[review].usefulness_rating)/3).toFixed(1)
+        if( reviews[review].avg>=4 ) {
+          reviews[review].panel = "panel panel-success"
+        }
+        if( reviews[review].avg>2 && reviews[review].avg<4 ) {
+          reviews[review].panel = "panel panel-warning"
+        }
+        if( reviews[review].avg<=2 ) {
+          reviews[review].panel = "panel panel-danger"
+        }
+
+        if(reviews[review].exam_bool == 1)
+          reviews[review].exam = "Yes"
+        if(reviews[review].exam_bool == 0)
+          reviews[review].exam = "No"
+      }
+      $scope.courseAverages = getCourseAverages(reviews)
+    });
+
+  }
+
+  function scaleAvg(num){
+      if(num==1)
+        return 5
+      if(num==2)
+        return 4
+      if(num==3)
+        return 3
+      if(num==4)
+        return 2
+      if(num==5)
+        return 1
+  }
+
+  function getCourseAverages(reviews) {
+    courseAverages = {avg: 0, courseload_rating: 0, tough_rating: 0, usefulness_rating: 0} //average of all reviews for course
+    for (review in reviews) {
+      courseAverages['avg'] += parseFloat(reviews[review].avg)
+      courseAverages['courseload_rating'] += reviews[review].courseload_rating
+      courseAverages['tough_rating'] += reviews[review].tough_rating
+      courseAverages['usefulness_rating'] += reviews[review].usefulness_rating
+    }
+    courseAverages['avg'] = (courseAverages['avg']/reviews.length).toFixed(1) //calculate total avg
+    if (courseAverages['avg']>=4) courseAverages['alert'] = "alert alert-success"
+    else if (courseAverages['avg']>2 && courseAverages['avg']<4) courseAverages['alert'] = "alert alert-warning"
+    else if (courseAverages['avg']<=2) courseAverages['alert'] = "alert alert-danger"
+
+    courseAverages['courseload_rating'] = (courseAverages['courseload_rating']/reviews.length).toFixed(1) //calculate courseload_rating
+    courseAverages['tough_rating'] = (courseAverages['tough_rating']/reviews.length).toFixed(1) //calculate tough_rating
+    courseAverages['usefulness_rating'] = (courseAverages['usefulness_rating']/reviews.length).toFixed(1) //calculate usefulness_rating
+
+    return (courseAverages)
+  }
+
+  //delete a specific review
+  $scope.deleteReview = function(id) {
+    var url = "https://info3103.cs.unb.ca:39348/reviews/" + id
+
+    $http({ method: 'DELETE', url: url }).then(
+      function(response) { //success
+        if (response.status == 200){}
+      },
+      function(response) { //error
+        if (response.status == 401){}
+    });
   }
 
   //get the CS courses

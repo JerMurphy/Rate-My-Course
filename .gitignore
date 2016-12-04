@@ -1,2 +1,5 @@
 /deliverables/
 /app/cookie-jar
+/app/cert.pem
+/app/key.pem
+/app/static/.DS_Store
