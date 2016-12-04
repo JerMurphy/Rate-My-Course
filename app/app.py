@@ -66,7 +66,7 @@ class SignIn(Resource):
         l.start_tls_s()
         l.simple_bind_s("uid="+request_params['username']+
           ", ou=People,ou=fcs,o=unb", request_params['password'])
-        # At this point we have sucessfully authenticated.
+        # At this point we have sucessfully authenticated. 
 
         session['username'] = request_params['username']
         response = {'status': 'login successful', 'username': session['username']}
@@ -76,7 +76,7 @@ class SignIn(Resource):
         responseCode = 401
       finally:
         l.unbind()
-
+    
     return make_response(jsonify(response), responseCode)
 
   # GET: Check Cookie data with Session data
@@ -91,7 +91,7 @@ class SignIn(Resource):
       responseCode = 404
 
     return make_response(jsonify(response), responseCode)
-
+  
   # DELETE: Check Cookie data with Session data
   # curl -i -H "Content-Type: application/json" -X DELETE -b cookie-jar -k https://info3103.cs.unb.ca:39348/signin
   def delete(self):
@@ -104,7 +104,7 @@ class SignIn(Resource):
       responseCode = 404
 
     return make_response(jsonify(response), responseCode)
-
+    
 
 #returns list of courses in a dictionary list
 class AllCourses(Resource):
@@ -162,7 +162,7 @@ class AllReviews(Resource):
         postedBy = session['username']
 
         data = [review, tough_rating, courseload_rating, usefulness_rating, exam_bool, courseId, postedBy]
-
+      
         cursor = db.cursor(MySQLdb.cursors.DictCursor)
         cursor.callproc('postReview', data)
         db.commit()
@@ -176,7 +176,7 @@ class AllReviews(Resource):
     else:
       response = {'status': 'Unauthorized'}
       responseCode = 401
-
+    
     return make_response(jsonify(response), responseCode)
 
 
@@ -197,9 +197,11 @@ class SpecificReviews(Resource):
 
 #edit/delete review owned by yourself
 class ManipulateReviews(Resource):
-  #curl -i -H "Content-Type: application/json" -X DELETE -b cookie-jar -k https://info3103.cs.unb.ca:39348/reviews/1
+  #curl -i -H "Content-Type: application/json" -X DELETE -d '{"postedBy": "jmurray2"}' -b cookie-jar -k https://info3103.cs.unb.ca:39348/reviews/1
   def delete(self, reviewID):
-      if 'username' in session:
+    if 'username' in session:
+      postedBy = request.json['postedBy']
+      if session['username'] == postedBy:
         try:
           cursor = db.cursor(MySQLdb.cursors.DictCursor)
           cursor.callproc('deleteReview', [reviewID])
@@ -210,9 +212,11 @@ class ManipulateReviews(Resource):
         except Exception, msg:
           print msg
           return make_response(jsonify({'status':'Bad request'}), 400)
-      else:
+      else: 
         return make_response(jsonify({'status':'Unauthorized'}), 401)
-
+    else:
+      return make_response(jsonify({'status':'Unauthorized'}), 401)
+    
   #curl -i -H "Content-Type: application/json" -X PUT -d '{"review":"i love this course!", "tough_rating": "5", "courseload_rating": "5", "usefulness_rating": "1", "exam_bool": true, "courseId": "CS1073", "postedBy": "jmurray2"}' -b cookie-jar -k https://info3103.cs.unb.ca:39348/reviews/1
   def put(self, reviewID):
     if 'username' in session:
@@ -234,7 +238,7 @@ class ManipulateReviews(Resource):
 
           resp = Response( json.dumps(cursor.fetchall()), status=200, mimetype="application/json" )
           return resp
-        else:
+        else: 
           return make_response(jsonify({'status':'Unauthorized'}), 401)
       except Exception, msg:
         print msg
