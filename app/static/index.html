@@ -196,24 +196,22 @@
           <h1 class="huge">Overall rating for {{courseAverages.courseId}}</h1>
           <div class="panel panel-default">
             <div class="panel-body">
-              <div class="row-lg-3 row-md-6">
-                <div class="row">
-                  <div class="col-xs-2 text-left">
-                    <h1 class="huge"><div class="{{courseAverages.avg_alert}}">{{courseAverages.avg}}</div></h1>
-                    <h6>Overall</h6>
-                  </div>
-                  <div class="col-xs-2 text-left">
-                    <h4 class="huge"><div class="{{courseAverages.courseload_alert}}">{{courseAverages.courseload_rating}}</div></h4>
-                    <h6>Courseload</h6>
-                  </div>
-                  <div class="col-xs-2 text-center">
-                    <h4 class="huge"><div class="{{courseAverages.usefulness_alert}}">{{courseAverages.usefulness_rating}}</div></h4>
-                    <h6>Practicality</h6>
-                  </div>
-                  <div class="col-xs-2 text-right">
-                    <h4 class="huge"><div class="{{courseAverages.tough_alert}}">{{courseAverages.tough_rating}}</div></h4>
-                    <h6>Difficulty</h6>
-                  </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <h6>Overall</h6>
+                  <h1 class="huge"><div class="{{courseAverages.avg_alert}}">{{courseAverages.avg}}</div></h1>
+                </div>
+                <div class="col-md-3">
+                  <h6>Courseload</h6>
+                  <h4 class="huge"><div class="{{courseAverages.courseload_alert}}">{{courseAverages.courseload_rating}}</div></h4>
+                </div>
+                <div class="col-md-3">
+                  <h6>Practicality</h6>
+                  <h4 class="huge"><div class="{{courseAverages.usefulness_alert}}">{{courseAverages.usefulness_rating}}</div></h4> 
+                </div>
+                <div class="col-md-3">
+                  <h6>Difficulty</h6>
+                  <h4 class="huge"><div class="{{courseAverages.tough_alert}}">{{courseAverages.tough_rating}}</div></h4>
                 </div>
               </div>
             </div>
@@ -303,33 +301,31 @@
                 <button><span class="glyphicon glyphicon-pencil"></span></button>
                 <button ng-click="deleteReview(review.id)"><span class="glyphicon glyphicon-remove"></span></button>
               </div>
-              <div class="row-lg-3 row-md-6">
                 <div class="row">
-                  <div class="col-xs-2 text-left">
-                    <h1 class="huge"><div class="{{review.avg_alert}}">{{review.avg}}</div></h1>
+                  <div class="col-md-2">
                     <h6>Overall</h6>
+                    <h1 class="huge"><div class="{{review.avg_alert}}">{{review.avg}}</div></h1>
                   </div>
-                  <div class="col-xs-2 text-left">
-                    <h4 class="huge"><div class="{{review.courseload_alert}}">{{review.courseload_rating}}</div></h4>
+                  <div class="col-md-2">
                     <h6>Courseload</h6>
+                    <h4 class="huge"><div class="{{review.courseload_alert}}">{{review.courseload_rating}}</div></h4>
                   </div>
-                  <div class="col-xs-2 text-center">
-                    <h4 class="huge"><div class="{{review.usefulness_alert}}">{{review.usefulness_rating}}</div></h4>
+                  <div class="col-md-2">
                     <h6>Practicality</h6>
+                    <h4 class="huge"><div class="{{review.usefulness_alert}}">{{review.usefulness_rating}}</div></h4>
                   </div>
-                  <div class="col-xs-2 text-right">
-                    <h4 class="huge"><div class="{{review.tough_alert}}">{{review.tough_rating}}</div></h4>
+                  <div class="col-md-2">
                     <h6>Difficulty</h6>
+                    <h4 class="huge"><div class="{{review.tough_alert}}">{{review.tough_rating}}</div></h4>
                   </div>
-                  <div class="col-xs-2 text-right">
-                    <h4>{{review.exam}}</h4>
+                  <div class="col-md-2">
+                    <h6>Exam</h6>
+                    <h1 class="{{review.exam}}"></h1>
                   </div>
                 </div>
-              </div>
             </div>
             <div class="panel-footer">
-              <span class="pull-left">{{review.review}}</span>
-              <div class="clearfix"></div>
+              {{review.review}}
             </div>
           </div>
           <hr>

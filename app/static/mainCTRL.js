@@ -107,29 +107,20 @@ function mainCTRL($scope,$http) {
         reviews[review].avg = ((scaleAvg(reviews[review].courseload_rating) + scaleAvg(reviews[review].tough_rating) + reviews[review].usefulness_rating)/3).toFixed(1)
         reviews[review].avg_alert = getAverageColor(reviews[review].avg)
         reviews[review].courseload_alert = getAverageColor(scaleAvg(reviews[review].courseload_rating))
-        reviews[review].usefulness_alert = getAverageColor(reviews[review].tough_rating)
+        reviews[review].usefulness_alert = getAverageColor(reviews[review].usefulness_rating)
         reviews[review].tough_alert = getAverageColor(scaleAvg(reviews[review].tough_rating))
 
         if(reviews[review].exam_bool == 1)
-          reviews[review].exam = "Examination"
+          reviews[review].exam = "glyphicon glyphicon-ok-circle"
         if(reviews[review].exam_bool == 0)
-          reviews[review].exam = "No Examination"
+          reviews[review].exam = "glyphicon glyphicon-remove-circle"
       }
       $scope.courseAverages = getCourseAverages(reviews)
     });
   }
 
   function scaleAvg(num){
-      if(num==1)
-        return 5
-      if(num==2)
-        return 4
-      if(num==3)
-        return 3
-      if(num==4)
-        return 2
-      if(num==5)
-        return 1
+    return Math.abs(num - 6)
   }
 
   function getAverageColor(avg) {
@@ -154,15 +145,14 @@ function mainCTRL($scope,$http) {
     courseAverages['avg_alert'] = getAverageColor(courseAverages['avg'])
 
     courseAverages['courseload_rating'] = (courseAverages['courseload_rating']/reviews.length).toFixed(1) //calculate courseload_rating
-    courseAverages['courseload_alert'] = getAverageColor(courseAverages['courseload_rating'])
+    courseAverages['courseload_alert'] = getAverageColor(scaleAvg(courseAverages['courseload_rating']))
 
     courseAverages['tough_rating'] = (courseAverages['tough_rating']/reviews.length).toFixed(1) //calculate tough_rating
-    courseAverages['tough_alert'] = getAverageColor(courseAverages['tough_rating'])
+    courseAverages['tough_alert'] = getAverageColor(scaleAvg(courseAverages['tough_rating']))
 
     courseAverages['usefulness_rating'] = (courseAverages['usefulness_rating']/reviews.length).toFixed(1) //calculate usefulness_rating
     courseAverages['usefulness_alert'] = getAverageColor(courseAverages['usefulness_rating'])
 
-    console.log(courseAverages)
     return (courseAverages)
   }
 
