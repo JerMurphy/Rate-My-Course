@@ -103,26 +103,20 @@ function mainCTRL($scope,$http) {
       reviews = response
       $scope.reviews = reviews
       //console.log(reviews)
-      for (review in reviews){
+      for (review in reviews) {
         reviews[review].avg = ((scaleAvg(reviews[review].courseload_rating) + scaleAvg(reviews[review].tough_rating) + reviews[review].usefulness_rating)/3).toFixed(1)
-        if( reviews[review].avg>=4 ) {
-          reviews[review].panel = "panel panel-success"
-        }
-        if( reviews[review].avg>2 && reviews[review].avg<4 ) {
-          reviews[review].panel = "panel panel-warning"
-        }
-        if( reviews[review].avg<=2 ) {
-          reviews[review].panel = "panel panel-danger"
-        }
+        reviews[review].avg_alert = getAverageColor(reviews[review].avg)
+        reviews[review].courseload_alert = getAverageColor(scaleAvg(reviews[review].courseload_rating))
+        reviews[review].usefulness_alert = getAverageColor(reviews[review].tough_rating)
+        reviews[review].tough_alert = getAverageColor(scaleAvg(reviews[review].tough_rating))
 
         if(reviews[review].exam_bool == 1)
-          reviews[review].exam = "Yes"
+          reviews[review].exam = "Examination"
         if(reviews[review].exam_bool == 0)
-          reviews[review].exam = "No"
+          reviews[review].exam = "No Examination"
       }
       $scope.courseAverages = getCourseAverages(reviews)
     });
-
   }
 
   function scaleAvg(num){
@@ -138,23 +132,37 @@ function mainCTRL($scope,$http) {
         return 1
   }
 
+  function getAverageColor(avg) {
+    if (avg>=4)
+      return "alert alert-success"
+    else if (avg>2 && avg<4)
+      return "alert alert-warning"
+    else if (avg<=2)
+      return "alert alert-danger"
+  }
+
   function getCourseAverages(reviews) {
-    courseAverages = {avg: 0, courseload_rating: 0, tough_rating: 0, usefulness_rating: 0} //average of all reviews for course
+    courseAverages = {courseId: null, avg: 0, courseload_rating: 0, tough_rating: 0, usefulness_rating: 0} //average of all reviews for course
     for (review in reviews) {
       courseAverages['avg'] += parseFloat(reviews[review].avg)
       courseAverages['courseload_rating'] += reviews[review].courseload_rating
       courseAverages['tough_rating'] += reviews[review].tough_rating
       courseAverages['usefulness_rating'] += reviews[review].usefulness_rating
     }
+    courseAverages['courseId'] = reviews[0].courseId
     courseAverages['avg'] = (courseAverages['avg']/reviews.length).toFixed(1) //calculate total avg
-    if (courseAverages['avg']>=4) courseAverages['alert'] = "alert alert-success"
-    else if (courseAverages['avg']>2 && courseAverages['avg']<4) courseAverages['alert'] = "alert alert-warning"
-    else if (courseAverages['avg']<=2) courseAverages['alert'] = "alert alert-danger"
+    courseAverages['avg_alert'] = getAverageColor(courseAverages['avg'])
 
     courseAverages['courseload_rating'] = (courseAverages['courseload_rating']/reviews.length).toFixed(1) //calculate courseload_rating
-    courseAverages['tough_rating'] = (courseAverages['tough_rating']/reviews.length).toFixed(1) //calculate tough_rating
-    courseAverages['usefulness_rating'] = (courseAverages['usefulness_rating']/reviews.length).toFixed(1) //calculate usefulness_rating
+    courseAverages['courseload_alert'] = getAverageColor(courseAverages['courseload_rating'])
 
+    courseAverages['tough_rating'] = (courseAverages['tough_rating']/reviews.length).toFixed(1) //calculate tough_rating
+    courseAverages['tough_alert'] = getAverageColor(courseAverages['tough_rating'])
+
+    courseAverages['usefulness_rating'] = (courseAverages['usefulness_rating']/reviews.length).toFixed(1) //calculate usefulness_rating
+    courseAverages['usefulness_alert'] = getAverageColor(courseAverages['usefulness_rating'])
+
+    console.log(courseAverages)
     return (courseAverages)
   }
 

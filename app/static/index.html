@@ -1,4 +1,4 @@
-y<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" ng-app>
 <head>
   <title>Rate My Course</title>
@@ -192,7 +192,35 @@ y<!DOCTYPE html>
       <hr>
       <div ng-if="reviews">
         <button type="button" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">Create a Review</button>
-        <h1>Reviews for {{reviews[0].courseId}} <span class="{{courseAverages.alert}}">{{courseAverages.avg}}</span> courseload: {{courseAverages.courseload_rating}}  toughness:{{courseAverages.tough_rating}}  usefulness:{{courseAverages.usefulness_rating}}</h1>
+          <!-- Beginning of overall review panel -->
+          <h1 class="huge">Overall rating for {{courseAverages.courseId}}</h1>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="row-lg-3 row-md-6">
+                <div class="row">
+                  <div class="col-xs-2 text-left">
+                    <h1 class="huge"><div class="{{courseAverages.avg_alert}}">{{courseAverages.avg}}</div></h1>
+                    <h6>Overall</h6>
+                  </div>
+                  <div class="col-xs-2 text-left">
+                    <h4 class="huge"><div class="{{courseAverages.courseload_alert}}">{{courseAverages.courseload_rating}}</div></h4>
+                    <h6>Courseload</h6>
+                  </div>
+                  <div class="col-xs-2 text-center">
+                    <h4 class="huge"><div class="{{courseAverages.usefulness_alert}}">{{courseAverages.usefulness_rating}}</div></h4>
+                    <h6>Practicality</h6>
+                  </div>
+                  <div class="col-xs-2 text-right">
+                    <h4 class="huge"><div class="{{courseAverages.tough_alert}}">{{courseAverages.tough_rating}}</div></h4>
+                    <h6>Difficulty</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <!-- End of overall review panel -->
+
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -266,39 +294,36 @@ y<!DOCTYPE html>
               </div>
             </div>
           </div>
-        </br>
+          </br>
         <!-- Start of reviews panels -->
         <div ng-repeat = "review in reviews">
-          <div class="{{review.panel}}">
-            <div class="panel-heading">
+          <div class="panel panel-default">
+            <div class="panel-body">
               <div ng-if="review.postedBy == session['username']" class ="pull-right" style="color: black">
                 <button><span class="glyphicon glyphicon-pencil"></span></button>
                 <button ng-click="deleteReview(review.id)"><span class="glyphicon glyphicon-remove"></span></button>
               </div>
-            </div>
-            <div class="panel-body">
               <div class="row-lg-3 row-md-6">
-                  <div class="row">
-                    <div class="col-xs-2 text-left">
-                      <h1 class="huge">{{review.avg}}</h1>
-                      <h6>Average</h6>
-                    </div>
-                    <div class="col-xs-2 text-left">
-                      <h1 class="huge">{{review.courseload_rating}}</h1>
-                      <h6>Courseload Rating</h6>
-                    </div>
-                    <div class="col-xs-2 text-center">
-                      <h1 class="huge">{{review.usefulness_rating}}</h1>
-                        <h6>Usefulness Rating</h6>
-                    </div>
-                    <div class="col-xs-2 text-right">
-                      <h1 class="huge">{{review.tough_rating}}</h1>
-                      <h6>Toughness Rating</h6>
-                    </div>
-                    <div class="col-xs-2 text-right">
-                      <h1 class="huge">{{review.exam}}</h1>
-                        <h6>Exam</h6>
-                    </div>
+                <div class="row">
+                  <div class="col-xs-2 text-left">
+                    <h1 class="huge"><div class="{{review.avg_alert}}">{{review.avg}}</div></h1>
+                    <h6>Overall</h6>
+                  </div>
+                  <div class="col-xs-2 text-left">
+                    <h4 class="huge"><div class="{{review.courseload_alert}}">{{review.courseload_rating}}</div></h4>
+                    <h6>Courseload</h6>
+                  </div>
+                  <div class="col-xs-2 text-center">
+                    <h4 class="huge"><div class="{{review.usefulness_alert}}">{{review.usefulness_rating}}</div></h4>
+                    <h6>Practicality</h6>
+                  </div>
+                  <div class="col-xs-2 text-right">
+                    <h4 class="huge"><div class="{{review.tough_alert}}">{{review.tough_rating}}</div></h4>
+                    <h6>Difficulty</h6>
+                  </div>
+                  <div class="col-xs-2 text-right">
+                    <h4>{{review.exam}}</h4>
+                  </div>
                 </div>
               </div>
             </div>
@@ -307,6 +332,7 @@ y<!DOCTYPE html>
               <div class="clearfix"></div>
             </div>
           </div>
+          <hr>
         </div>
       </div>
     </div>
