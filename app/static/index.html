@@ -235,45 +235,22 @@
                           <td><input type="text" require size="8" name="courseID" id="courseid"></td>
                       </tr>
                       <tr>
-                          <td>Toughness Rating: </td>
-                          <td>
-                            <select id="tough" name="tough_rating">
-                              <option value="1"> 1 </option>
-                              <option value="2"> 2 </option>
-                              <option value="3"> 3 </option>
-                              <option value="4"> 4 </option>
-                              <option value="5"> 5 </option>
-                            </select>
-                          </td>
+                          <td>Simple</td>
+                          <td><input type="range" min="1" max="5" step="1" id="tough" name="tough_rating"></td>
+                          <td>Tough</td>
                       </tr>
                       <tr>
-                          <td>Usefulness Rating: </td>
-                          <td>
-                            <select id="use" name="use_rating">
-                              <option value="1"> 1 </option>
-                              <option value="2"> 2 </option>
-                              <option value="3"> 3 </option>
-                              <option value="4"> 4 </option>
-                              <option value="5"> 5 </option>
-                            </select>
-                          </td>
+                          <td>Useless</td>
+                          <td><input type="range" min="1" max="5" step="1" id="use" name="use_rating"></td>   
+                          <td>Practical</td>
                       </tr>
                       <tr>
-                          <td>Courseload Rating: </td>
-                          <td>
-                            <select id="courseload" name="courseload_rating">
-                              <option value="1"> 1 </option>
-                              <option value="2"> 2 </option>
-                              <option value="3"> 3 </option>
-                              <option value="4"> 4 </option>
-                              <option value="5"> 5 </option>
-                            </select>
-                          </td>
+                          <td>Light courseload</td>
+                          <td><input type="range" min="1" max="5" step="1" id="courseload" name="courseload_rating"></td>
+                          <td>Heavy courseload</td>
                       </tr>
                       <tr>
-                        <td>
-                          Exam:
-                        </td>
+                        <td>Exam:</td>
                         <td>
                           <input type="radio" name="exam" id="exam" value="true"> Yes<br>
                           <input type="radio" name="exam" id="exam" value="false"> No<br>

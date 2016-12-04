@@ -124,11 +124,11 @@ function mainCTRL($scope,$http) {
   }
 
   function getAverageColor(avg) {
-    if (avg>=4)
+    if (avg>=4.0)
       return "alert alert-success"
-    else if (avg>2 && avg<4)
+    else if (avg>2.5 && avg<4.0)
       return "alert alert-warning"
-    else if (avg<=2)
+    else if (avg<=2.5)
       return "alert alert-danger"
   }
 
@@ -145,10 +145,10 @@ function mainCTRL($scope,$http) {
     courseAverages['avg_alert'] = getAverageColor(courseAverages['avg'])
 
     courseAverages['courseload_rating'] = (courseAverages['courseload_rating']/reviews.length).toFixed(1) //calculate courseload_rating
-    courseAverages['courseload_alert'] = getAverageColor(scaleAvg(courseAverages['courseload_rating']))
+    courseAverages['courseload_alert'] = getAverageColor(courseAverages['courseload_rating'])
 
     courseAverages['tough_rating'] = (courseAverages['tough_rating']/reviews.length).toFixed(1) //calculate tough_rating
-    courseAverages['tough_alert'] = getAverageColor(scaleAvg(courseAverages['tough_rating']))
+    courseAverages['tough_alert'] = getAverageColor(courseAverages['tough_rating'])
 
     courseAverages['usefulness_rating'] = (courseAverages['usefulness_rating']/reviews.length).toFixed(1) //calculate usefulness_rating
     courseAverages['usefulness_alert'] = getAverageColor(courseAverages['usefulness_rating'])
