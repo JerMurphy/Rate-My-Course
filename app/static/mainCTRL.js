@@ -84,16 +84,22 @@ function mainCTRL($scope,$http) {
         exam_bool: $('#exam').val()
      }
      var data = JSON.stringify(dat);
+     var postMessage = "";
 
      $http({ method: 'POST', url: url, data: data }).then(
        function(response) { //success
          if (response.status == 200) {
           $scope.getReviews(dat.courseId);
+          $scope.postMessage = "Post was Successful"; //this works
+          console.log(session['username']);
+          //clear form data
+          document.getElementById("postForm").reset();
          }
-       },
-       function(response) { //error
-         if (response.status == 401) {}
-       });
+         if (response.status == 401) {
+          $scope.postMessage = "Unauthorized: Please Log in "; //this doesnt... fix me
+         }
+      });
+     
    }
 
   //list the reviews
@@ -161,7 +167,6 @@ function mainCTRL($scope,$http) {
   $scope.deleteReview = function(id) {
     var url = "https://info3103.cs.unb.ca:39348/reviews/" + id
     var tempCourseId = $scope.reviews[1].courseId;
-    console.log(tempCourseId);
 
     $http({ method: 'DELETE', url: url}).then(
       function(response) { //success
