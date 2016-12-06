@@ -190,9 +190,8 @@
       <h1>Welcome</h1>
       <p>This is a service from students for students. You may read through the reviews on various courses to see if they are a fit for your lifestyle. Please no foul languge when leaving reviews.</p>
       <hr>
-       <button type="button" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">Create a Review</button>
       <div ng-if="reviews">
-       
+        <button type="button" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myModal">Create a Review</button>
           <!-- Beginning of overall review panel -->
           <h1 class="huge">Overall rating for {{courseAverages.courseId}}</h1>
           <div class="panel panel-default">
@@ -266,7 +265,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" ng-click="postReview()" data-dismiss="modal">Create Review</button>
+                  <button type="button" class="btn btn-primary" ng-click="postReview()">Create Review</button>
                 </div>
               </div>
             </div>

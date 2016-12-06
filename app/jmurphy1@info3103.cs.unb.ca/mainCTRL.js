@@ -84,12 +84,11 @@ function mainCTRL($scope,$http) {
         exam_bool: $('#exam').val()
      }
      var data = JSON.stringify(dat);
+     console.log(data);
 
      $http({ method: 'POST', url: url, data: data }).then(
        function(response) { //success
-         if (response.status == 200) {
-          $scope.getReviews(dat.courseId);
-         }
+         if (response.status == 201) {}
        },
        function(response) { //error
          if (response.status == 401) {}
@@ -146,10 +145,10 @@ function mainCTRL($scope,$http) {
     courseAverages['avg_alert'] = getAverageColor(courseAverages['avg'])
 
     courseAverages['courseload_rating'] = (courseAverages['courseload_rating']/reviews.length).toFixed(1) //calculate courseload_rating
-    courseAverages['courseload_alert'] = getAverageColor(scaleAvg(courseAverages['courseload_rating']))
+    courseAverages['courseload_alert'] = getAverageColor(courseAverages['courseload_rating'])
 
     courseAverages['tough_rating'] = (courseAverages['tough_rating']/reviews.length).toFixed(1) //calculate tough_rating
-    courseAverages['tough_alert'] = getAverageColor(scaleAvg(courseAverages['tough_rating']))
+    courseAverages['tough_alert'] = getAverageColor(courseAverages['tough_rating'])
 
     courseAverages['usefulness_rating'] = (courseAverages['usefulness_rating']/reviews.length).toFixed(1) //calculate usefulness_rating
     courseAverages['usefulness_alert'] = getAverageColor(courseAverages['usefulness_rating'])
@@ -160,14 +159,10 @@ function mainCTRL($scope,$http) {
   //delete a specific review
   $scope.deleteReview = function(id) {
     var url = "https://info3103.cs.unb.ca:39348/reviews/" + id
-    var tempCourseId = $scope.reviews[1].courseId;
-    console.log(tempCourseId);
 
-    $http({ method: 'DELETE', url: url}).then(
+    $http({ method: 'DELETE', url: url }).then(
       function(response) { //success
-        if (response.status == 200){
-           $scope.getReviews(tempCourseId);
-        }
+        if (response.status == 200){}
       },
       function(response) { //error
         if (response.status == 401){}

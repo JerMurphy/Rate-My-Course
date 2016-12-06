@@ -200,8 +200,6 @@ class ManipulateReviews(Resource):
   #curl -i -H "Content-Type: application/json" -X DELETE -d '{"postedBy": "jmurray2"}' -b cookie-jar -k https://info3103.cs.unb.ca:39348/reviews/1
   def delete(self, reviewID):
     if 'username' in session:
-      postedBy = request.json['postedBy']
-      if session['username'] == postedBy:
         try:
           cursor = db.cursor(MySQLdb.cursors.DictCursor)
           cursor.callproc('deleteReview', [reviewID])
@@ -212,8 +210,6 @@ class ManipulateReviews(Resource):
         except Exception, msg:
           print msg
           return make_response(jsonify({'status':'Bad request'}), 400)
-      else: 
-        return make_response(jsonify({'status':'Unauthorized'}), 401)
     else:
       return make_response(jsonify({'status':'Unauthorized'}), 401)
     
